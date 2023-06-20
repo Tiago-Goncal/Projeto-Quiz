@@ -7,8 +7,12 @@ using namespace std;
 struct Utilizador
 {
     string nome;
+    string email;
     string password;
     int pontuacao;
+    int highScore;
+    int nJogos;
+    int totalperguntas;
 };
 
 

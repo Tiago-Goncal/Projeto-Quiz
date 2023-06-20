@@ -15,6 +15,19 @@ struct Utilizador
     int totalperguntas;
 };
 
+void boasvindas()
+{
+
+    cout << "|=========================|" << endl;
+    cout << "|====SEJA BEM-VINDO AO====|" << endl;
+    cout << "|========QUIZ GAME========!" << endl;
+    cout << "|=========================|" << endl;
+    
+    cout << "Prima qualquer tecla para continuar" << endl;
+    cin.ignore();
+
+
+}
 
 int main()
 {

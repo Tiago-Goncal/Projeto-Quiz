@@ -84,10 +84,9 @@ void guardarDadosUtilizador(const Utilizador& userMestre)
   if (file.is_open())//esta aberto? se sim, entao escrever.
   {
     file << "Nome: " << userMestre.nome << endl;
-    file.close();
     file << "Email: " << userMestre.email << endl;
-    file.close();
     file << "Password: " << userMestre.password << endl;
+    file << endl;
     file.close();
     cout <<"\nDados guardados";
   }

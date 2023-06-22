@@ -34,6 +34,7 @@ int menu()
         exit();
         break;
     default:
+        error();
         //BRR! Erro
         break;}
 
@@ -70,6 +71,7 @@ int menu()
         exit();
         break;
     default:
+        error();
         //BRR! Erro
         break;
     }

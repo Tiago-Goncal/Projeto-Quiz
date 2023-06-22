@@ -5,6 +5,8 @@
 #include "Signin.hpp"
 #include "boasvindas.hpp"
 #include "Menuprime.hpp"
+#include "exit.hpp"
+#include "error.hpp"
 
 using namespace std;
 

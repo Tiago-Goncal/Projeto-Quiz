@@ -23,7 +23,7 @@ void menu()
     while(escolha != 4){
     if (login == 0){
 
-    cout << "\nSeleccione:" << endl;
+    cout << "\nSelecione:" << endl;
     cout << "[1]:Iniciar jogo" << endl;
     cout << "[2]:Tabela de lideres" << endl;
     cout << "[3]:Eliminar utilizador" << endl;
@@ -52,25 +52,24 @@ void menu()
         //BRR! Erro
         break;}
 
-    }else{
+    }else if(login == 1){
 
-    cout << "\nSeleccione:" << endl;
+    cout << "\nSelecione:" << endl;
     cout << "[1]:Iniciar sessão" << endl;
     cout << "[2]:Registar" << endl;
     cout << "[3]:Iniciar jogo" << endl;
-    cout << "[4]:Sair" << endl << endl;
-    cout << "[5]:Tabela de lideres" << endl;
+    cout << "[4]:Sair" << endl;
+    cout << "[5]:Tabela de lideres" << endl << endl;
     cout << ">>>>";
-
+    cin >> escolha;
     switch (escolha){
-
     case 1:
         system("CLS");
-        //Iniciar sessão
+        //Login();
         break;
     case 2:
         system("CLS");
-        Registo(userMestre);
+        //Registo(userMestre);
         break;
     case 3:
         system("CLS");
@@ -78,17 +77,19 @@ void menu()
         break;
     case 4:
         system("CLS");
-        //Tabela de lideres
+        vexit();
         break;
     case 5:
         system("CLS");
-        vexit();
+        //Tabela de lideres
         break;
     default:
         //error();
         //BRR! Erro
         break;
     }
+    }else{
+        error();
     }
 }
 }

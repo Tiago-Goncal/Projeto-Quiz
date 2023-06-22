@@ -20,25 +20,15 @@ Este Ficheiro serve para:
 
 using namespace std;
 
-  //definiçao da estrutura "user"
-  struct Utilizador
-  {
-    string nome;
-    string email;
-    string password;
-    int pontuacao = 0;
-    int highScore = 0;
-    int nJogos = 0;
-    int totalperguntas= 0;
-  };
+  //definiçao da estrutura "user
 
 //declaraçoes
-void MenuUtilizador();
+//void MenuUtilizador();
 Utilizador Registo(Utilizador);
 void Login();
 void guardarDadosUtilizador(const Utilizador&);
 
-
+/*
 void MenuUtilizador()
 {
   int escolha;
@@ -72,10 +62,10 @@ void MenuUtilizador()
       //erro
       break;
     }
-    
+ */   
 
    
-}
+
 
 //guardar dados no ficheiro
 void guardarDadosUtilizador(const Utilizador& userMestre)
@@ -136,7 +126,7 @@ Utilizador Registo(Utilizador)
 
 void Login()
 {
-  
+
 }
 
 #endif //SIGNIN

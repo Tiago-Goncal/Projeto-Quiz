@@ -1,6 +1,11 @@
 #ifndef MENUPRIME_H
 #define MENUPRIME_H
 
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
 int menu()
 {
     system("CLS");
@@ -16,6 +21,7 @@ int menu()
     cout << "[3]:Eliminar utilizador" << endl;
     cout << "[4]:Sair" << endl << endl;
     cout << ">>>>";
+    cin >> escolha;
     switch (escolha){
     case 1:
         system("CLS");
@@ -31,10 +37,10 @@ int menu()
         break;
     case 4:
         system("CLS");
-        exit();
+        //exit();
         break;
     default:
-        error();
+        //error();
         //BRR! Erro
         break;}
 
@@ -68,10 +74,10 @@ int menu()
         break;
     case 5:
         system("CLS");
-        exit();
+        //exit();
         break;
     default:
-        error();
+        //error();
         //BRR! Erro
         break;
     }

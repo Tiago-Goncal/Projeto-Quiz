@@ -39,6 +39,10 @@ void guardarDadosUtilizador(const Utilizador& userMestre)
     file << "Nome: " << userMestre.nome << endl;
     file << "Email: " << userMestre.email << endl;
     file << "Password: " << userMestre.password << endl;
+    file << "UltimaPontuaçao: " << userMestre.pontuacao << endl;
+    file << "PontuaçaoMaxima: " << userMestre.highScore << endl;
+    file << "NumerodeJogos: " << userMestre.nJogos << endl;
+    file << "TotalPontos: " << userMestre.totalperguntas << endl;
     file << endl;
     file.close();
     cout <<"\nDados guardados";

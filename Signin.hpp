@@ -17,6 +17,8 @@ Este Ficheiro serve para:
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -27,45 +29,6 @@ using namespace std;
 Utilizador Registo(Utilizador);
 void Login();
 void guardarDadosUtilizador(const Utilizador&);
-
-/*
-void MenuUtilizador()
-{
-  int escolha;
-  Utilizador userMestre;
-
-  while (escolha!=3)
-  {
-    cout << "\n----------------------------------------------";
-    cout << "\nSelecione uma opçao:";
-    cout << "\n1: Registo: ";
-    cout << "\n2: Login: ";
-    cout << "\n3: Sair ";
-    cout << "\n----------------------------------------------";
-    cin.ignore();
-    }
-
-    switch (escolha)
-    {
-    case 1:
-      //Registo
-      Registo(userMestre);
-      break;
-    case 2:
-      //login
-      break;
-    case 3:
-      //sair
-      break;
-    
-    default:
-      //erro
-      break;
-    }
- */   
-
-   
-
 
 //guardar dados no ficheiro
 void guardarDadosUtilizador(const Utilizador& userMestre)
@@ -85,7 +48,78 @@ void guardarDadosUtilizador(const Utilizador& userMestre)
     cerr << "Ficheiro falhou a abrir.";
   }
   
-};
+}
+
+//esta funçao le o fichiro de texto linha a linha
+void lerUtilizador(string& linha, Utilizador& userMestre)
+{
+  stringstream is(linha);
+  string temp;
+  int cont;
+
+  while (getline(is, temp, ' '))
+  {
+    if (cont = 0)
+    {
+      userMestre.nome = temp;
+    }
+    else if (cont = 1)
+    {
+      userMestre.email = temp;
+    }
+    else if (cont = 2)
+    {
+      userMestre.password = temp;
+    }
+    else if (cont = 3)
+    {
+      userMestre.pontuacao = atoi(temp.c_str());
+    }
+    else if (cont = 4)
+    {
+      userMestre.highScore = atoi(temp.c_str());
+    }
+    else if (cont = 5)
+    {
+      userMestre.nJogos = atoi(temp.c_str());
+    }
+    else if (cont = 6)
+    {
+      userMestre.totalperguntas = atoi(temp.c_str());
+    }
+
+    ++cont;
+  }
+}
+//ler o ficheiro com os dados de utilizador
+void lerFicheiroUtilizador(string filename,vector<Utilizador>& lista)
+{
+  ifstream instream;
+  instream.open("Dados_utilizador.txt");
+
+  if (instream)//verifica se o ficheiro esta aberto
+  {
+    string line;
+    while (getline(instream, line, '\n'))
+    {
+      Utilizador novoutilizador;
+
+      lerUtilizador(line,novoutilizador);
+      
+      lista.push_back(novoutilizador);
+    }
+    
+    instream.close();
+    cout << "\n" << (to_string(lista.size())) + " Utilizadores registados. ";
+  }
+
+  else
+  {
+    cout << "\nFicheiro falhou a abrir";
+  }
+  
+
+}
 
 //registo: implementaçao
 Utilizador Registo(Utilizador)
@@ -126,6 +160,9 @@ Utilizador Registo(Utilizador)
 
 void Login()
 {
+
+  cout << "\nLogin: ";
+  cout << endl;
 
 }
 

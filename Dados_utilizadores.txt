@@ -1,1 +1,7 @@
- 
+Nome: Ricardo Teixeira  
+Email: Rtpc@gmail.com
+Password: Nope
+UltimaPontuaçao: 6
+PontuaçaoMaxima: 9 
+NumerodeJogos: 12
+TotalPontos: 234

@@ -9,6 +9,7 @@ using namespace std;
 
 void menu()
 {
+    setlocale(LC_ALL,"");
     system("CLS");
     int escolha = 0;
     int login;
@@ -28,8 +29,8 @@ void menu()
     cout << "[1]:Iniciar jogo" << endl;
     cout << "[2]:Tabela de lideres" << endl;
     cout << "[3]:Eliminar utilizador" << endl;
-    cout << "[4]:Sair" << endl << endl;
-    cout << ">>>>";
+    cout << "[4]:Sair" << endl;
+    cout << ">>>>" << endl;
     cin >> escolha;
     switch (escolha){
     case 1:
@@ -46,7 +47,7 @@ void menu()
         break;
     case 4:
         system("CLS");
-        vexit();
+        //vexit();
         break;
     default:
         //error();
@@ -62,13 +63,13 @@ void menu()
     cout << "[2]:Registar" << endl;
     cout << "[3]:Iniciar jogo" << endl;
     cout << "[4]:Sair" << endl;
-    cout << "[5]:Tabela de lideres" << endl << endl;
-    cout << ">>>>";
+    cout << "[5]:Tabela de lideres" << endl;
+    cout << ">>>>" << endl;
     cin >> escolha;
     switch (escolha){
     case 1:
         system("CLS");
-        Login();
+        //Login();
         break;
     case 2:
         system("CLS");
@@ -80,7 +81,7 @@ void menu()
         break;
     case 4:
         system("CLS");
-        vexit();
+        //vexit();
         break;
     case 5:
         system("CLS");
@@ -92,7 +93,7 @@ void menu()
         break;
     }
     }else{
-        error();
+        return;
     }
 }
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <locale.h>
 
 //ficheiros secundarios
 #include "Estruturas.hpp"

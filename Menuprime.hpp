@@ -51,8 +51,8 @@ int menu()
     cout << "[1]:Iniciar sessão" << endl;
     cout << "[2]:Registar" << endl;
     cout << "[3]:Iniciar jogo" << endl;
-    cout << "[4]:Tabela de lideres" << endl;
-    cout << "[5]:Sair" << endl << endl;
+    cout << "[4]:Sair" << endl << endl;
+    cout << "[5]:Tabela de lideres" << endl;
     cout << ">>>>";
 
     switch (escolha){

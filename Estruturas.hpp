@@ -3,7 +3,7 @@
 */
 
 #ifndef ESTRUTURAS_H
-#define  ESTRUTURAS_H
+#define ESTRUTURAS_H
 
 #include <string>
 

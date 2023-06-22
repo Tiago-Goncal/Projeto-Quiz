@@ -2,7 +2,7 @@
 Este Ficheiro serve para:
 
  - lidar com a rececao de dados de utlizador no registo
- - Guardar estesdados num ficheiro de texto
+ - Guardar estes dados num ficheiro de texto
  - ler os dados deste ficheiro na funçao login
 
   para testar a funcionalidade deve-se usar uma diretiva inlcude to main.cpp
@@ -95,7 +95,6 @@ void guardarDadosUtilizador(const Utilizador& userMestre)
     cerr << "Ficheiro falhou a abrir.";
   }
   
-  
 };
 
 //registo: implementaçao
@@ -103,7 +102,7 @@ Utilizador Registo(Utilizador)
 {
   Utilizador dadosUtilizador;
 
-  cout << "\nREgisto: ";
+  cout << "\nRegisto: ";
   cout << "\nNome: ";
   getline(cin, dadosUtilizador.nome);
   cout << "\nEmail: ";
@@ -111,10 +110,33 @@ Utilizador Registo(Utilizador)
   cout << "\nPassword: ";
   getline(cin, dadosUtilizador.password);
 
-  guardarDadosUtilizador(dadosUtilizador);
+  if (dadosUtilizador.nome.length()== 0 || 
+  dadosUtilizador.email.length()== 0 || dadosUtilizador.password.length()== 0)
+  {
+    cout << "\nCampo obrigatorios estao vazios. ";
+    cout << "\nPrima qualquer tecla para continuar...";
+    Registo(dadosUtilizador);
+  }
+  else if(dadosUtilizador.email.find('@') == string::npos && 
+  dadosUtilizador.email.find('.com') == string::npos)
+  {
+    cout << "\nEmail Não valido.";
+    cout << "\nPrima qualquer tecla para continuar...";
+    Registo(dadosUtilizador);
+  }
+  else
+  {
+    guardarDadosUtilizador(dadosUtilizador);
+  }
 
   return dadosUtilizador;
 }
 
+
+
+void Login()
+{
+  
+}
 
 #endif //SIGNIN

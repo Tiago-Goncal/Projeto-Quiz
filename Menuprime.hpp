@@ -5,7 +5,7 @@ int menu()
 {
     system("CLS");
     int escolha = 0;
-
+    Utilizador mestre;
 
     while(escolha != 5){
     if (int login = 0){

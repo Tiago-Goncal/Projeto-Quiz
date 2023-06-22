@@ -16,7 +16,6 @@ int main()
 {
     boasVindas();
     menu();
-    exit();
     cout << "\nh";
 
     return 0;

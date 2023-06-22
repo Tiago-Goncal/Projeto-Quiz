@@ -31,7 +31,7 @@ int menu()
         break;
     case 4:
         system("CLS");
-        //Sair
+        exit();
         break;
     default:
         //BRR! Erro
@@ -67,7 +67,7 @@ int menu()
         break;
     case 5:
         system("CLS");
-        //Sair
+        exit();
         break;
     default:
         //BRR! Erro

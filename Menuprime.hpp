@@ -50,7 +50,8 @@ void menu()
     default:
         //error();
         //BRR! Erro
-        break;}
+        break;
+        }
 
     }else if(login == 1){
 
@@ -65,7 +66,7 @@ void menu()
     switch (escolha){
     case 1:
         system("CLS");
-        //Login();
+        Login();
         break;
     case 2:
         system("CLS");

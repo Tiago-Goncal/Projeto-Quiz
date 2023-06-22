@@ -16,6 +16,7 @@
     int highScore = 0;
     int nJogos = 0;
     int totalperguntas= 0;
+    int id;
   };
 
 

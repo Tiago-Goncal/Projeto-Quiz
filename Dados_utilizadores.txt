@@ -1,7 +1,89 @@
-Nome: Ricardo Teixeira  
+Nome: Ricardo Teixeira
 Email: Rtpc@gmail.com
 Password: Nope
-UltimaPontuaçao: 6
-PontuaçaoMaxima: 9 
+UltimaPontuacao: 6
+PontuacaoMaxima: 9
 NumerodeJogos: 12
 TotalPontos: 234
+ID: 1
+
+Nome: Maria Silva
+Email: maria.silva@example.com
+Password: qwerty
+UltimaPontuacao: 3
+PontuacaoMaxima: 8
+NumerodeJogos: 10
+TotalPontos: 180
+ID: 2
+
+Nome: Pedro Santos
+Email: pedro.santos@example.com
+Password: password123
+UltimaPontuacao: 7
+PontuacaoMaxima: 10
+NumerodeJogos: 20
+TotalPontos: 400
+ID: 3
+
+Nome: Ana Costa
+Email: ana.costa@example.com
+Password: 123456
+UltimaPontuacao: 5
+PontuacaoMaxima: 7
+NumerodeJogos: 15
+TotalPontos: 290
+ID: 4
+
+Nome: Carlos Ferreira
+Email: carlos.ferreira@example.com
+Password: soccer21
+UltimaPontuacao: 8
+PontuacaoMaxima: 10
+NumerodeJogos: 18
+TotalPontos: 350
+ID: 5
+
+Nome: Sofia Carvalho
+Email: sofia.carvalho@example.com
+Password: ilovecats
+UltimaPontuacao: 2
+PontuacaoMaxima: 6
+NumerodeJogos: 8
+TotalPontos: 120
+ID: 6
+
+Nome: Andre Oliveira
+Email: andre.oliveira@example.com
+Password: sunshine
+UltimaPontuacao: 4
+PontuacaoMaxima: 9
+NumerodeJogos: 14
+TotalPontos: 260
+ID: 7
+
+Nome: Patricia Rodrigues
+Email: patricia.rodrigues@example.com
+Password: mydog123
+UltimaPontuacao: 6
+PontuacaoMaxima: 10
+NumerodeJogos: 16
+TotalPontos: 310
+ID: 8
+
+Nome: Hugo Almeida
+Email: hugo.almeida@example.com
+Password: 7890asdf
+UltimaPontuacao: 5
+PontuacaoMaxima: 8
+NumerodeJogos: 13
+TotalPontos: 230
+ID: 9
+
+Nome: Ines Goncalves
+Email: ines.goncalves@example.com
+Password: letmein
+UltimaPontuacao: 7
+PontuacaoMaxima: 9
+NumerodeJogos: 17
+TotalPontos: 340
+ID: 10

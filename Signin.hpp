@@ -4,8 +4,9 @@ Este Ficheiro serve para:
  - lidar com a rececao de dados de utlizador no registo
  - Guardar estes dados num ficheiro de texto
  - ler os dados deste ficheiro na funçao login
+ - lidar com a eliminaçao de utilizadores
 
-  para testar a funcionalidade deve-se usar uma diretiva inlcude to main.cpp
+  para testar a funcionalidade deve-se usar uma diretiva include to main.cpp
 
   #include "Signin.hpp"
 
@@ -22,13 +23,12 @@ Este Ficheiro serve para:
 
 using namespace std;
 
-  //definiçao da estrutura "user
-
 //declaraçoes
-//void MenuUtilizador();
 Utilizador Registo(Utilizador);
 void Login();
+void lerUtilizador(string& linha, Utilizador& userMestre);
 void guardarDadosUtilizador(const Utilizador&);
+void eliminarUtilizador(const string& linha, const string& nomeApagar);
 
 //guardar dados no ficheiro
 void guardarDadosUtilizador(const Utilizador& userMestre)
@@ -43,6 +43,7 @@ void guardarDadosUtilizador(const Utilizador& userMestre)
     file << "PontuaçaoMaxima: " << userMestre.highScore << endl;
     file << "NumerodeJogos: " << userMestre.nJogos << endl;
     file << "TotalPontos: " << userMestre.totalperguntas << endl;
+    file << "ID: " << userMestre.id << endl;
     file << endl;
     file.close();
     cout <<"\nDados guardados";
@@ -91,7 +92,10 @@ void lerUtilizador(string& linha, Utilizador& userMestre)
     {
       userMestre.totalperguntas = atoi(temp.c_str());
     }
-
+    else if (cont = 7)
+    {
+      userMestre.id = atoi(temp.c_str());
+    }
     ++cont;
   }
 }
@@ -143,6 +147,7 @@ Utilizador Registo(Utilizador)
   {
     cout << "\nCampo obrigatorios estao vazios. ";
     cout << "\nPrima qualquer tecla para continuar...";
+    cin.ignore();
     Registo(dadosUtilizador);
   }
   else if(dadosUtilizador.email.find('@') == string::npos && 
@@ -150,16 +155,22 @@ Utilizador Registo(Utilizador)
   {
     cout << "\nEmail Não valido.";
     cout << "\nPrima qualquer tecla para continuar...";
+    cin.ignore();
     Registo(dadosUtilizador);
   }
   else
   {
+    dadosUtilizador.id= dadosUtilizador.id+1;
     guardarDadosUtilizador(dadosUtilizador);
   }
 
   return dadosUtilizador;
 }
 
+void eliminarUtilizador(const string& linha, const string& nomeApagar)
+{
+
+}
 
 
 void Login()

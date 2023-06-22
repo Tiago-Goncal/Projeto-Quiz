@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void exit()
+void vexit()
 {
 
     //system("CLS");

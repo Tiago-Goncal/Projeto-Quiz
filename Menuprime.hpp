@@ -20,7 +20,7 @@ void menu()
 
     Utilizador userMestre;
 
-    while(escolha != 5){
+    while(escolha != 4){
     if (login == 0){
 
     cout << "\nSeleccione:" << endl;
@@ -45,7 +45,7 @@ void menu()
         break;
     case 4:
         system("CLS");
-        exit();
+        vexit();
         break;
     default:
         //error();
@@ -82,7 +82,7 @@ void menu()
         break;
     case 5:
         system("CLS");
-        //exit();
+        vexit();
         break;
     default:
         //error();

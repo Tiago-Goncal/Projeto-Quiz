@@ -15,12 +15,13 @@ void menu()
 
     cout << "\nLogin status[0- 1]:" << endl;
     cin >> login;
-    cin.ignore();
+    //cin.ignore();
 
 
     Utilizador userMestre;
 
-    while(escolha != 4){
+    while(escolha != 4)
+    {
     if (login == 0){
 
     cout << "\nSelecione:" << endl;
@@ -51,10 +52,11 @@ void menu()
         //error();
         //BRR! Erro
         break;
-        }
+    }
 
-    }else if(login == 1){
-
+    }
+    else if(login == 1)
+    {
     cout << "\nSelecione:" << endl;
     cout << "[1]:Iniciar sessão" << endl;
     cout << "[2]:Registar" << endl;

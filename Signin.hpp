@@ -20,6 +20,7 @@ Este Ficheiro serve para:
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <cstdio>
 
 using namespace std;
 
@@ -28,22 +29,27 @@ Utilizador Registo(Utilizador);
 void Login();
 void lerUtilizador(string& linha, Utilizador& userMestre);
 void guardarDadosUtilizador(const Utilizador&);
-void eliminarUtilizador(const string& linha, const string& nomeApagar);
+void eliminarUtilizador(const string& nomeFicheiro, const int& idApagar);
+
+//variaveis
+
+vector<Utilizador> lista;
+Utilizador dadosUtilizador;
 
 //guardar dados no ficheiro
-void guardarDadosUtilizador(const Utilizador& userMestre)
+void guardarDadosUtilizador(const Utilizador& dadosUtilizador)
 {
   ofstream file("Dados_utilizador.txt");//criar ficheiro
   if (file.is_open())//esta aberto? se sim, entao escrever.
   {
-    file << "Nome: " << userMestre.nome << endl;
-    file << "Email: " << userMestre.email << endl;
-    file << "Password: " << userMestre.password << endl;
-    file << "UltimaPontuaçao: " << userMestre.pontuacao << endl;
-    file << "PontuaçaoMaxima: " << userMestre.highScore << endl;
-    file << "NumerodeJogos: " << userMestre.nJogos << endl;
-    file << "TotalPontos: " << userMestre.totalperguntas << endl;
-    file << "ID: " << userMestre.id << endl;
+    file << "Nome: " << dadosUtilizador.nome << endl;
+    file << "Email: " << dadosUtilizador.email << endl;
+    file << "Password: " << dadosUtilizador.password << endl;
+    file << "UltimaPontuaçao: " << dadosUtilizador.pontuacao << endl;
+    file << "PontuaçaoMaxima: " << dadosUtilizador.highScore << endl;
+    file << "NumerodeJogos: " << dadosUtilizador.nJogos << endl;
+    file << "TotalPontos: " << dadosUtilizador.totalperguntas << endl;
+    file << "ID: " << dadosUtilizador.id << endl;
     file << endl;
     file.close();
     cout <<"\nDados guardados";
@@ -56,7 +62,7 @@ void guardarDadosUtilizador(const Utilizador& userMestre)
 }
 
 //esta funçao le o fichiro de texto linha a linha
-void lerUtilizador(string& linha, Utilizador& userMestre)
+void lerUtilizador(string& linha, Utilizador& dadosUtilizador)
 {
   stringstream is(linha);
   string temp;
@@ -66,35 +72,35 @@ void lerUtilizador(string& linha, Utilizador& userMestre)
   {
     if (cont = 0)
     {
-      userMestre.nome = temp;
+      dadosUtilizador.nome = temp;
     }
     else if (cont = 1)
     {
-      userMestre.email = temp;
+      dadosUtilizador.email = temp;
     }
     else if (cont = 2)
     {
-      userMestre.password = temp;
+      dadosUtilizador.password = temp;
     }
     else if (cont = 3)
     {
-      userMestre.pontuacao = atoi(temp.c_str());
+      dadosUtilizador.pontuacao = atoi(temp.c_str());
     }
     else if (cont = 4)
     {
-      userMestre.highScore = atoi(temp.c_str());
+      dadosUtilizador.highScore = atoi(temp.c_str());
     }
     else if (cont = 5)
     {
-      userMestre.nJogos = atoi(temp.c_str());
+      dadosUtilizador.nJogos = atoi(temp.c_str());
     }
     else if (cont = 6)
     {
-      userMestre.totalperguntas = atoi(temp.c_str());
+      dadosUtilizador.totalperguntas = atoi(temp.c_str());
     }
     else if (cont = 7)
     {
-      userMestre.id = atoi(temp.c_str());
+      dadosUtilizador.id = atoi(temp.c_str());
     }
     ++cont;
   }
@@ -132,7 +138,7 @@ void lerFicheiroUtilizador(string filename,vector<Utilizador>& lista)
 //registo: implementaçao
 Utilizador Registo(Utilizador)
 {
-  Utilizador dadosUtilizador;
+  //Utilizador dadosUtilizador;
 
   cout << "\nRegisto: ";
   cout << "\nNome: ";
@@ -167,10 +173,82 @@ Utilizador Registo(Utilizador)
   return dadosUtilizador;
 }
 
-void eliminarUtilizador(const string& linha, const string& nomeApagar)
+void eliminarUtilizador(const string& nomeficheiro, const int& idApagar)
 {
+  ifstream ficheiro("Dados_utilizador.txt");
+  if (!ficheiro) //o ficheiro falhou a abrir
+  {
+    cout << "Ficheiro nao encontrado." << endl;
+    return;
+  }
+  //ler
+  while (ficheiro >> dadosUtilizador.nome >> dadosUtilizador.email >> 
+  dadosUtilizador.password >> dadosUtilizador.pontuacao >> dadosUtilizador.highScore >> 
+  dadosUtilizador.nJogos >> dadosUtilizador.totalperguntas >> dadosUtilizador.id)
+  {
+    lista.push_back(dadosUtilizador);
+  }
+  ficheiro.close();
 
+  //Criaçao de um ficheiro temporario para mainpulaçao segura
+  ofstream tempfile("Tempfile.txt"); 
+  if (!tempfile) //o ficheiro falhou a abrir
+  {
+    cout << "Ficheiro nao pode ser criado." << endl;
+    return;
+  }
+  //percorrer o vetor e procurar o id selecionado
+  int encontrado=0;//esta valor passa a ser1 se o id for encontrado
+
+  for (size_t i = 0; i < lista.size(); i++)
+  {
+    if (lista[i].id == idApagar)
+    {
+       encontrado = 1;
+       lista.erase(lista.begin()+ i);
+       break;
+    }
+  }
+  if (encontrado = 1)
+  {
+    for (size_t i = 0; i < lista.size(); i++)
+    {
+      lista[i].id = i + 1;
+      //escrever no ficheiro temporario
+      tempfile << "Nome: " << lista[i].nome << endl;
+      tempfile << "Email: " << lista[i].email << endl;
+      tempfile << "Password: " << lista[i].password << endl;
+      tempfile << "UltimaPontuacao: " << lista[i].pontuacao << endl;
+      tempfile << "PontuacaoMaxima: " << lista[i].highScore << endl;
+      tempfile << "NumerodeJogos: " << lista[i].nJogos << endl;
+      tempfile << "TotalPontos: " << lista[i].totalperguntas << endl;
+      tempfile << "ID: " << lista[i].id << endl;
+      tempfile << endl; 
+    }
+  }
+  else
+  {
+    cout << "Utilizador com o ID " << idApagar << " não existe." << endl;
+  }
+  //fechar ficheiro temporario
+  tempfile.close();
+
+  //apagar o ficheiro antigo e renomear o temporario com os novos dados
+  if (remove(nomeficheiro.c_str())!= 0)
+  {
+    cout << "Erro a apagar ficheiro" << endl;
+    return;
+  }
+  if (rename("Tempfile.txt", nomeficheiro.c_str()) != 0) 
+  {
+    cout << "Erro a renomear ficheiro" << endl;
+    return;
+  }
+  //confirmaçao
+  cout << "Utilizador com o ID " << idApagar << " removido." << endl;
 }
+  
+
 
 
 void Login()
@@ -178,6 +256,7 @@ void Login()
 
   cout << "\nLogin: ";
   cout << endl;
+  
 
 }
 

@@ -5,7 +5,7 @@ int menu()
 {
     system("CLS");
     int escolha = 0;
-    Utilizador mestre;
+    Utilizador userMestre;
 
     while(escolha != 5){
     if (int login = 0){
@@ -56,7 +56,7 @@ int menu()
         break;
     case 2:
         system("CLS");
-        //Registar
+        Registo(userMestre);
         break;
     case 3:
         system("CLS");

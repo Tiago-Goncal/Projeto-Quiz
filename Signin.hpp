@@ -108,7 +108,7 @@ Utilizador Registo(Utilizador)
     Registo(dadosUtilizador);
   }
   else if(dadosUtilizador.email.find('@') == string::npos && 
-  dadosUtilizador.email.find('.com') == string::npos)
+  dadosUtilizador.email.find('.') == string::npos)
   {
     cout << "\nEmail Não valido.";
     cout << "\nPrima qualquer tecla para continuar...";

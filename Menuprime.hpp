@@ -7,14 +7,21 @@
 using namespace std;
 
 
-int menu()
+void menu()
 {
     system("CLS");
     int escolha = 0;
+    int login;
+
+    cout << "\nLogin status[0- 1]:" << endl;
+    cin >> login;
+    cin.ignore();
+
+
     Utilizador userMestre;
 
     while(escolha != 5){
-    if (int login = 0){
+    if (login == 0){
 
     cout << "\nSeleccione:" << endl;
     cout << "[1]:Iniciar jogo" << endl;
@@ -38,7 +45,7 @@ int menu()
         break;
     case 4:
         system("CLS");
-        //exit();
+        exit();
         break;
     default:
         //error();

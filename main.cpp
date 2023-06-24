@@ -4,11 +4,10 @@
 
 //ficheiros secundarios
 #include "Estruturas.hpp"
-#include "exit.hpp"
-#include "error.hpp"
 #include "Signin.hpp"
-#include "boasvindas.hpp"
+#include "Extras.hpp"
 #include "Menuprime.hpp"
+#include "tema.hpp"
 
 
 using namespace std;
@@ -17,6 +16,7 @@ using namespace std;
 
 int main()
 {
+    setlocale(LC_ALL, " ");
     boasVindas();
     menu();
     cout << "\nh";

@@ -1,0 +1,21 @@
+id,tema,pergunta,escolha1,escolha2,escolha3,escolha4,resposta_correta
+1,1,Qual é a capital de Portugal?,Lisboa,Porto,Coimbra,Madrid,Lisboa
+2,2,Quem pintou a obra "A Última Ceia"?,Leonardo da Vinci,Pablo Picasso,Vincent van Gogh,Michelangelo,Leonardo da Vinci
+3,3,Qual é o maior rio do Brasil?,Rio Amazonas,Rio Nilo,Rio Danúbio,Rio Mississipi,Rio Amazonas
+4,4,Qual é o país conhecido por suas pirâmides?,Egito,México,China,Itália,Egito
+5,1,Quem escreveu "Os Lusíadas"?,Luís de Camões,Fernando Pessoa,Miguel de Cervantes,Machado de Assis,Luís de Camões
+6,2,Qual é o animal símbolo da Austrália?,Canguru,Leão,Golfinho,Elefante,Canguru
+7,3,Qual é a moeda utilizada no Japão?,Iene,Dólar Euro,Real,Iene
+8,4,Qual é o maior estado do Brasil em extensão territorial?,Amazonas,Bahia,Rio de Janeiro,São Paulo,Amazonas
+9,1,Qual é o autor de "Dom Quixote"?,Miguel de Cervantes,Fernando Pessoa,William Shakespeare,Machado de Assis,Miguel de Cervantes
+10,2,Qual é o instrumento musical conhecido como "Rei dos Instrumentos"?,Órgão,Piano,Guitarra,Bateria,Piano
+11,3,Qual é a montanha mais alta de Portugal?,Pico,Estrela,Serra da Arrábida,Serra da Estrela,Pico
+12,4,Qual é o maior arquipélago do mundo?,Havaí,Açores,Balears,Filipinas,Açores
+13,1,Quem foi o primeiro presidente dos Estados Unidos?,George Washington,Thomas Jefferson,Abraham Lincoln,Barack Obama,George Washington
+14,2,Qual é o maior deserto do mundo?,Deserto do Saara,Deserto de Gobi,Deserto do Atacama,Deserto de Mojave,Deserto do Saara
+15,3,Qual é o país conhecido como "Terra dos Cangurus"?,Austrália,Canadá,Brasil,Rússia,Austrália
+16,4,Quem escreveu "Os Maias"?,Eça de Queirós,Camilo Castelo Branco,Fernando Pessoa,José Saramago,Eça de Queirós
+17,1,Qual é a língua mais falada no mundo?,Chinês,Espanhol,Inglês,Hindi,Chinês
+18,2,Quem pintou a obra "Guernica"?,Pablo Picasso,Vincent van Gogh,Salvador Dalí,Leonardo da Vinci,Pablo Picasso
+19,3,Qual é o maior oceano do mundo?,Oceano Pacífico,Oceano Atlântico,Oceano Índico,Oceano Ártico,Oceano Pacífico
+20,4,Qual é o país conhecido como "Terra dos Faraós"?,Egito,Grécia,Índia,Peru,Egito

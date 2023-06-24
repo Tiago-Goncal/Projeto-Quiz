@@ -9,15 +9,23 @@
 
   struct Utilizador
   {
-    std::string nome;
-    std::string email;
-    std::string password;
+    std::string nome = "";
+    std::string email = "";
+    std::string password = "";
     int pontuacao = 0;
     int highScore = 0;
     int nJogos = 0;
     int totalperguntas= 0;
-    int id;
+    int id = 0;
   };
 
+  struct Pergunta
+  {
+    int idTema; //1:Cultura Geral|2:Historia|3:Desporto|4:Cinema
+    string question;
+    string escolhas[4];
+    string correta;
 
-  #endif // ESTRUTURAS
+  };
+
+  #endif // ESTRUTURAS_H

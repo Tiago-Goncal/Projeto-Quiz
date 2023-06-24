@@ -26,7 +26,7 @@ using namespace std;
 
 //declaraçoes
 Utilizador Registo(Utilizador);
-void Login();
+Utilizador Login();
 void lerUtilizador(string& linha, Utilizador& userMestre);
 void guardarDadosUtilizador(const Utilizador&);
 void eliminarUtilizador(const string& nomeFicheiro, const int& idApagar);
@@ -130,6 +130,7 @@ void lerFicheiroUtilizador(string filename,vector<Utilizador>& lista)
   else
   {
     cout << "\nFicheiro falhou a abrir";
+    return;
   }
   
 
@@ -139,19 +140,33 @@ void lerFicheiroUtilizador(string filename,vector<Utilizador>& lista)
 Utilizador Registo(Utilizador)
 {
   //Utilizador dadosUtilizador;
+  string tempPass;
 
   cout << "\nRegisto: ";
   cout << "\nNome: ";
   getline(cin, dadosUtilizador.nome);
   cout << "\nEmail: ";
   getline(cin, dadosUtilizador.email);
-  cout << "\nPassword: ";
+  cout << "\nPalavrapasse: ";
   getline(cin, dadosUtilizador.password);
+  cout << "\nConfirme a palavra passe: ";
+  getline(cin, tempPass);
+  if (tempPass != dadosUtilizador.password || tempPass.length()==0)
+  {
+    cout << "\nPalavra passe nao confirmada";
+    tempPass.clear();
+    Registo(dadosUtilizador);
+  }
+  else
+  {
+    cout << "\nPalavra passe Confirmada.";
+  }
+  
 
   if (dadosUtilizador.nome.length()== 0 || 
   dadosUtilizador.email.length()== 0 || dadosUtilizador.password.length()== 0)
   {
-    cout << "\nCampo obrigatorios estao vazios. ";
+    cout << "\nCampos obrigatorios estao vazios. ";
     cout << "\nPrima qualquer tecla para continuar...";
     cin.ignore();
     Registo(dadosUtilizador);
@@ -250,14 +265,69 @@ void eliminarUtilizador(const string& nomeficheiro, const int& idApagar)
   
 
 
-
-void Login()
+//Login
+//passos
+//1:receber os dados od utilizador
+//2:confirmar se estes sao validos
+//3:carregar os ficheiro com os dados de utilizador
+//4:comparar com o registo
+Utilizador Login()
 {
+  Utilizador dadoslogin;
 
+  system("CLS");
   cout << "\nLogin: ";
+  cout << "\nNome: ";
+  getline(cin, dadoslogin.nome);
+  cout << "\nEmail: ";
+  getline(cin, dadoslogin.email);
+  cout << "\nPassword: ";
+  getline(cin, dadoslogin.password);
+  //campos vazios
+  if (dadoslogin.nome.length()== 0 || dadoslogin.email.length()== 0 || dadoslogin.password.length()== 0)
+  {
+    cout << "\nCampos obrigatorios estão vazios" << endl;
+    //limpar variavel
+    dadoslogin.nome.clear();
+    dadoslogin.email.clear();
+    dadoslogin.password.clear();
+    Login();
+  }
+  else
+  {
+    //ler e procurar se os valores introduzidos correspondem a um utilizador valido
+    int encontrado = 0;
+    lerFicheiroUtilizador("Dados_utilizadores.txt",lista);
+    for (const Utilizador& temp : lista)
+    {
+      if (temp.nome == dadoslogin.nome && temp.email == dadoslogin.email && temp.password == dadoslogin.password)
+      {
+        //utilizador encontrado, reter a estrutura para uso futuro
+        encontrado = 1;
+        cout << "\nUtilizador encontrado. "<< endl;
+        cout << "\nBem Vindo " <<  dadoslogin.nome << endl;
+        cout << "Prima qualquer tecla para continuar" << endl;
+        cin.ignore();
+        return temp;
+      }
+      else
+      {
+        //utlizador nao encontrado, retornar uma estrutura vazia.
+        cout << "\nUtilizador  não encontrado. "<< endl;
+        cout << "Prima qualquer tecla para continuar" << endl;
+        cin.ignore();
+        return Utilizador();
+      }
+    }
+    
+  }
+  
+
   cout << endl;
   
 
 }
+
+
 
 #endif //SIGNIN

@@ -4,9 +4,12 @@
 #include <iostream>
 #include <conio.h>
 
+
 using namespace std;
 
 void menu();
+
+Utilizador loggedUser;
 
 void menu()
 {
@@ -16,12 +19,7 @@ void menu()
     int loginstatus = 1;
     Utilizador userMestre;
   
-    //cout << "\nLogin status[0- 1]:" << endl;
-    //cin >> loginstatus;
-    //cin.ignore();
-
-
-
+  
     while(escolha != 4)
     {
     cout << "\nSelecione:" << endl;
@@ -36,7 +34,7 @@ void menu()
     case 1:
       {
         system("CLS");
-        Utilizador loggedUser = Login();
+        loggedUser = Login();
         break;
       }
     case 2:

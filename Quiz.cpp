@@ -2,12 +2,11 @@
 #include "include/Quiz.h"
 
 
-
-
 //declaraçoes
-
 vector<Pergunta> questList;// vetor com a lista de perguntas por tema
 unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count(); //numero aleatoria para a funçao shuffle
+Utilizador loggedUser;//utilizador com login valido
+Utilizador emptyUser;//usado para a versao sem login
 
 //1:Cultura Geral|2:Historia|3:Desporto|4:Cinema
 void quizSemUser()

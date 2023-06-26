@@ -6,7 +6,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include "include/Estrutura.h"
+#include "include/Estruturas.h"
 
 // Function declarations
 void lerUtilizador(std::string& linha, Utilizador& dadosUtilizador);

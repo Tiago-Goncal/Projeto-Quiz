@@ -7,7 +7,7 @@
 #include <sstream>
 #include <vector>
 #include <cstdio>
-#include "include/Estruturas.h" // Include the "Estruturas.h" header
+#include "include\Estruturas.h" 
 #include "include/func_leitura.h"
 
 //declaraçoes

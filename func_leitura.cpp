@@ -1,6 +1,7 @@
-
 #include "include/func_leitura.h"
+#include "include/Estruturas.h"
 
+using namespace std;
 
 void lerUtilizador(string& linha, Utilizador& dadosUtilizador)
 {
@@ -10,35 +11,35 @@ void lerUtilizador(string& linha, Utilizador& dadosUtilizador)
 
   while (getline(is, temp, ' '))
   {
-    if (cont = 0)
+    if (cont == 0)
     {
       dadosUtilizador.nome = temp;
     }
-    else if (cont = 1)
+    else if (cont == 1)
     {
       dadosUtilizador.email = temp;
     }
-    else if (cont = 2)
+    else if (cont == 2)
     {
       dadosUtilizador.password = temp;
     }
-    else if (cont = 3)
+    else if (cont == 3)
     {
       dadosUtilizador.pontuacao = atoi(temp.c_str());
     }
-    else if (cont = 4)
+    else if (cont == 4)
     {
       dadosUtilizador.highScore = atoi(temp.c_str());
     }
-    else if (cont = 5)
+    else if (cont == 5)
     {
       dadosUtilizador.nJogos = atoi(temp.c_str());
     }
-    else if (cont = 6)
+    else if (cont == 6)
     {
       dadosUtilizador.totalperguntas = atoi(temp.c_str());
     }
-    else if (cont = 7)
+    else if (cont == 7)
     {
       dadosUtilizador.id = atoi(temp.c_str());
     }
@@ -98,7 +99,7 @@ void guardarDadosUtilizador(const Utilizador& dadosUtilizador)
   
 }
 
-void lerCSV(const string& nomeFicheiro ,vector<Pergunta>perguntas)
+void lerCSV(const string& nomeFicheiro ,vector<Pergunta>& perguntas)
 {
   ifstream instream;
   instream.open("Perguntas.csv");

@@ -1,5 +1,7 @@
 #include "include/Menu.h"
 
+extern Utilizador loggedUser;
+
 void menu()
 {
     system("CLS");

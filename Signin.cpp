@@ -8,10 +8,6 @@ Este Ficheiro serve para:
 
 */
 #include "include/Signin.h"
-#include "include/Estruturas.h"
-#include "include/func_leitura.h"
-
-
 
 
 using namespace std;

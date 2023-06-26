@@ -1,9 +1,6 @@
-#ifndef ESTRUTURAS_H
-#define ESTRUTURAS_H
+#include "include/Estruturas.h"
 
-#include <string>
-
-  struct Utilizador
+ struct Utilizador
   {
     std::string nome = "";
     std::string email = "";
@@ -24,5 +21,3 @@
     std::string correta;
 
   };
-
-  #endif // ESTRUTURAS_H

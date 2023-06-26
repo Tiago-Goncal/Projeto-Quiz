@@ -7,10 +7,10 @@ Este Ficheiro serve para:
  - lidar com a eliminaçao de utilizadores
 
 */
+#include "include/Signin.h"
+#include "include/Estruturas.h"
+#include "include/func_leitura.h"
 
-#include "Estruturas.h"
-#include "func_leitura.h"
-#include "Signin.h"
 
 
 

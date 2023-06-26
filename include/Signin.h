@@ -7,8 +7,8 @@
 #include <sstream>
 #include <vector>
 #include <cstdio>
-#include "Estruturas.h" // Include the "Estruturas.h" header
-#include "func_leitura.h"
+#include "include/Estruturas.h" // Include the "Estruturas.h" header
+#include "include/func_leitura.h"
 
 //declaraçoes
 Utilizador Registo(Utilizador);

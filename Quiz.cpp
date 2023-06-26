@@ -1,9 +1,6 @@
 
+#include "include/Quiz.h"
 
-#include "Estruturas.h"
-#include "func_leitura.h"
-#include "Quiz.h"
-#include "Menu.h"
 
 
 

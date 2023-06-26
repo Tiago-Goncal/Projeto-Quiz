@@ -6,7 +6,9 @@
 #include <algorithm>
 #include <cctype>
 #include <vector>
-#include "Estruturas.h" // Include the "Estruturas.h" header
+#include "include/Estruturas.h"
+#include "include/func_leitura.h"
+#include "include/Menu.h"
 
 
 void quizSemUser();

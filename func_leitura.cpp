@@ -1,4 +1,6 @@
-#include "func_leitura.h"
+
+#include "include/func_leitura.h"
+
 
 void lerUtilizador(string& linha, Utilizador& dadosUtilizador)
 {

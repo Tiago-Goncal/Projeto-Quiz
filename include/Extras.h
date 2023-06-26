@@ -1,7 +1,7 @@
-/*
-Menus de entrada saida e erro
-funcoes menores
-*/
+
+//Menus de entrada saida e erro
+//funcoes menores
+
 
 #ifndef EXTRAS_H
 #define EXTRAS_H

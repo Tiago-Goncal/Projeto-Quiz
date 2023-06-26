@@ -6,10 +6,11 @@
 #include <algorithm>
 
 //ficheiros secundarios
-#include "Estruturas.h"
-#include "Signin.h"
-#include "Extras.h"
-#include "Quiz.h"
+#include "include/Estruturas.h"
+#include "include/func_leitura.h"
+#include "include/Signin.h"
+#include "include/Extras.h"
+#include "include/Quiz.h"
 
 
 using namespace std;

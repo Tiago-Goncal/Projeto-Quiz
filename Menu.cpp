@@ -1,18 +1,5 @@
-#ifndef MENU_H
-#define MENU_H
+#include "include/Menu.h"
 
-#include <iostream>
-#include "Estruturas.h"
-#include "Signin.h"
-#include "Quiz.h"
-#include "Extras.h"
-
-//declaraçao
-void menu();
-Utilizador loggedUser;//utilizador com login valido
-Utilizador emptyUser;//usado para a versao sem login
-
-//definiçao
 void menu()
 {
     system("CLS");
@@ -80,5 +67,3 @@ void menu()
         }
     }
 }
-
-#endif // MENU_H

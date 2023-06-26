@@ -40,7 +40,7 @@ void menu()
 
     while(escolha != 4)
     {
-    if (loginstatus == 0){
+   /* if (loginstatus == 0){
 
     cout << "\nSelecione:" << endl;
     cout << "[1]:Iniciar jogo" << endl;
@@ -74,7 +74,7 @@ void menu()
 
     }
     else if(loginstatus == 1)
-    {
+    {*/
     cout << "\nSelecione:" << endl;
     cout << "[1]:Iniciar sessão" << endl;
     cout << "[2]:Registar" << endl;
@@ -109,9 +109,9 @@ void menu()
         //BRR! Erro
         break;
     }
-    }else{
+    /*}else{
         return;
-    }
+    }*/
 }
 }
 

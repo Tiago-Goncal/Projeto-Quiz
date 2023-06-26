@@ -318,10 +318,7 @@ Utilizador Login()
         return Utilizador();
       }
     }
-    
   }
-  
-
   cout << endl;
   
 

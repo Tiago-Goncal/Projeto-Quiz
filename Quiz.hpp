@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+
 //declaraçoes
 void quizSemUser();
 Utilizador quizComUser(Utilizador& loggedUser);
@@ -99,6 +100,8 @@ Utilizador quizComUser(Utilizador& loggedUser)
         quizComUser(loggedUser);
         break;
     }
+
+    return loggedUser;
 }
 
 

@@ -12,7 +12,7 @@ void menu()
     setlocale(LC_ALL,"");
     system("CLS");
     int escolha = 0;
-    int loginstatus;
+    int loginstatus = 1;
     Utilizador userMestre;
     /*
     esta variavel serve para capturar o valor da funçao login e deve ser usado para escolher qual o menu a usar

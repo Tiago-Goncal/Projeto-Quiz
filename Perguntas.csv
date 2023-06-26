@@ -1,21 +1,32 @@
-id,tema,pergunta,escolha1,escolha2,escolha3,escolha4,resposta_correta
-1,1,Qual é a capital de Portugal?,Lisboa,Porto,Coimbra,Madrid,Lisboa
-2,2,Quem pintou a obra "A Última Ceia"?,Leonardo da Vinci,Pablo Picasso,Vincent van Gogh,Michelangelo,Leonardo da Vinci
-3,3,Qual é o maior rio do Brasil?,Rio Amazonas,Rio Nilo,Rio Danúbio,Rio Mississipi,Rio Amazonas
-4,4,Qual é o país conhecido por suas pirâmides?,Egito,México,China,Itália,Egito
+id,3,pergunta,escolha1,escolha2,escolha3,escolha4,resposta_correta
+1,1,Quantos estados têm os Estados Unidos integrados?,56,59,53,50,50
+2,1,Em que ano acabou a II Guerra Mundial?,1976,1945,1956,1967,1945
+3,1,Quantos anos durou a Guerra dos 100 anos?,100 anos,80 anos,79 anos,116 anos,116 anos
+4,1,Qual é o maior planeta do Sistema Solar?,Saturno,Júpiter,Saturno,Sol,Júpiter
 5,1,Quem escreveu "Os Lusíadas"?,Luís de Camões,Fernando Pessoa,Miguel de Cervantes,Machado de Assis,Luís de Camões
-6,2,Qual é o animal símbolo da Austrália?,Canguru,Leão,Golfinho,Elefante,Canguru
-7,3,Qual é a moeda utilizada no Japão?,Iene,Dólar Euro,Real,Iene
-8,4,Qual é o maior estado do Brasil em extensão territorial?,Amazonas,Bahia,Rio de Janeiro,São Paulo,Amazonas
+6,1,Qual é o filme de maior bilheteria de todos os tempos?,Spider-Man: No Way Home,Avengers: Endgame,Avatar,Titanic,Avatar
+7,1,Qual é a língua mais falada no mundo? ,Espanhol,Inglês,Mandarim chinês,Francês,Mandarim chinês
+8,1,Qual é o maior país do mundo?,Brasil,Russia,India,China,Russia
 9,1,Qual é o autor de "Dom Quixote"?,Miguel de Cervantes,Fernando Pessoa,William Shakespeare,Machado de Assis,Miguel de Cervantes
-10,2,Qual é o instrumento musical conhecido como "Rei dos Instrumentos"?,Órgão,Piano,Guitarra,Bateria,Piano
-11,3,Qual é a montanha mais alta de Portugal?,Pico,Estrela,Serra da Arrábida,Serra da Estrela,Pico
-12,4,Qual é o maior arquipélago do mundo?,Havaí,Açores,Balears,Filipinas,Açores
-13,1,Quem foi o primeiro presidente dos Estados Unidos?,George Washington,Thomas Jefferson,Abraham Lincoln,Barack Obama,George Washington
-14,2,Qual é o maior deserto do mundo?,Deserto do Saara,Deserto de Gobi,Deserto do Atacama,Deserto de Mojave,Deserto do Saara
-15,3,Qual é o país conhecido como "Terra dos Cangurus"?,Austrália,Canadá,Brasil,Rússia,Austrália
-16,4,Quem escreveu "Os Maias"?,Eça de Queirós,Camilo Castelo Branco,Fernando Pessoa,José Saramago,Eça de Queirós
-17,1,Qual é a língua mais falada no mundo?,Chinês,Espanhol,Inglês,Hindi,Chinês
-18,2,Quem pintou a obra "Guernica"?,Pablo Picasso,Vincent van Gogh,Salvador Dalí,Leonardo da Vinci,Pablo Picasso
-19,3,Qual é o maior oceano do mundo?,Oceano Pacífico,Oceano Atlântico,Oceano Índico,Oceano Ártico,Oceano Pacífico
-20,4,Qual é o país conhecido como "Terra dos Faraós"?,Egito,Grécia,Índia,Peru,Egito
+10,1,Quem foi o primeiro homem a andar na lua?,Robert Watkins,Richard Potter,Neil Armstrong,Arnold Schwarzenegger,Neil Armstrong
+11,2,Em que ano John F. Kennedy foi assassinado?,1963,1967,1973,1950,1963
+12,2,Quem fez o famoso discurso “I have a dream”?,Nelson Mandela,Martin L. King,Barack Obama,Mahtma Gandhi,Martin L. King
+13,2,Qual é o maior arquipélago do mundo?,Havaí,Açores,Balears,Filipinas,Açores
+14,2,"Na Roma antiga, quantos dias da semana haviam?",7 dias,5 dias,8 dias,10 dias,8 dias
+15,2,Em que ano foi inventada a televisão?,1945,1972,1979,1980,1972
+16,2,Qual é o país conhecido como "Terra dos Cangurus"?,Austrália,Canadá,Brasil,Rússia,Austrália
+17,2,A civilização asteca se originou de qual país?,Andorra,Dinamarca,México,Paraguai,México
+18,2,Qual é a língua mais falada no mundo?,Chinês,Espanhol,Inglês,Hindi,Chinês
+19,2,Quem explorou o Novo Mundo?,Pedro Alvares Cabral,Cristovão Colombo,Karl Max,Vitor Hugo,Cristovão Colombo
+20,2,Quando foi lançado o primeiro carro elétrico?,1990,2000,1720,1870,1870
+21,3,Quanto tempo dura um jogo de futsal?,90 minutos,45 minutos,40 minutos,20 minutos,40 minutos
+22,3,Em que equipa italiana jogou Diego Maradona? ,AC Milan,Napoli,Juventus,Sampdoria,Napoli
+23,3,Em que país foi inventado o voleibol?,Brasil,Italia,França,Estados Unidos,Estados Unidos
+24,3,"Qual destes jogadores de futebol, não tem uma bola de ouro?",Luis Figo,Neymar,Kaká,Ruud Gullit,Neymar
+25,3,Em que ano é que o Boxe se tornou um desporto legal? ,1901,1930,1910,1932,1901
+26,3,Qual é a equipa que ganhou mais Champions League na história? ,Real Madrid,Barcelona,Bayern Munich,,
+27,3,Qual atleta atingiu o recorde de velocidade nos 100 metros rasos?,Erling Haalang,Emil Medvedev,Usain Bolt,Patricia Mamona,Usain Bolt
+28,3,,,,,,
+29,3,,,,,,
+30,3,,,,,,
+,,,,,,,

@@ -31,11 +31,14 @@ void lerUtilizador(string& linha, Utilizador& userMestre);
 void lerFicheiroUtilizador(string filename,vector<Utilizador>& lista);
 void guardarDadosUtilizador(const Utilizador&);
 void eliminarUtilizador(const string& nomeFicheiro, const int& idApagar);
+void lerPergunta(string& linha, Pergunta& quiz);
+void lerCSV(const string& nomeFicheiro,vector<Pergunta>perguntas);
 
 //variaveis
 
 vector<Utilizador> lista;
 Utilizador dadosUtilizador;
+vector<Pergunta> quizquestions;
 
 //guardar dados no ficheiro
 void guardarDadosUtilizador(const Utilizador& dadosUtilizador)
@@ -61,7 +64,6 @@ void guardarDadosUtilizador(const Utilizador& dadosUtilizador)
   }
   
 }
-
 //esta funçao le o fichiro de texto linha a linha
 void lerUtilizador(string& linha, Utilizador& dadosUtilizador)
 {
@@ -136,7 +138,6 @@ void lerFicheiroUtilizador(string filename,vector<Utilizador>& lista)
   
 
 }
-
 //registo: implementaçao
 Utilizador Registo(Utilizador)
 {
@@ -188,7 +189,6 @@ Utilizador Registo(Utilizador)
 
   return dadosUtilizador;
 }
-
 void eliminarUtilizador(const string& nomeficheiro, const int& idApagar)
 {
   ifstream ficheiro("Dados_utilizador.txt");
@@ -264,8 +264,6 @@ void eliminarUtilizador(const string& nomeficheiro, const int& idApagar)
   cout << "Utilizador com o ID " << idApagar << " removido." << endl;
 }
   
-
-
 //Login
 //passos
 //1:receber os dados od utilizador
@@ -329,6 +327,64 @@ Utilizador Login()
 
 }
 
+void lerCSV(const string& nomeFicheiro ,vector<Pergunta>perguntas)
+{
+  ifstream instream;
+  instream.open("Perguntas.csv");
+  if (instream.is_open())
+  {
+    string line;
+    while (getline(instream, line, ','))
+    {
+      Pergunta tempPergunta;
+      lerPergunta(line, tempPergunta);
+      perguntas.push_back(tempPergunta);
+    }
+  }
+  else
+  {
+    cout << "\nFicheiro falhou a abrir.";
+    return;
+  } 
+}
 
+void lerPergunta(string& linha, Pergunta& quiz)
+{
+  stringstream is;
+  string temp;
+  int cont;
+  while (getline(is ,linha,','))
+  {
+    if (cont == 0)
+    {
+      quiz.id = atoi(temp.c_str());
+    }
+    else if (cont == 1)
+    {
+      quiz.idTema = atoi(temp.c_str());
+    }
+    else if (cont == 2)
+    {
+      quiz.escolhas[0] = temp;
+    }
+     else if (cont == 3)
+    {
+      quiz.escolhas[1] = temp;
+    }
+     else if (cont == 4)
+    {
+      quiz.escolhas[2] = temp;
+    }
+     else if (cont == 5)
+    {
+      quiz.escolhas[3] = temp;
+    }
+     else if (cont == 6)
+    {
+      quiz.correta = temp;
+    }
+    ++cont;  
+  }
+}
 
 #endif //SIGNIN

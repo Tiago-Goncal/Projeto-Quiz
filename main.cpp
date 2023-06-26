@@ -6,8 +6,10 @@
 #include "Estruturas.hpp"
 #include "Signin.hpp"
 #include "Extras.hpp"
+#include "Quiz.hpp"
 #include "Menuprime.hpp"
-#include "tema.hpp"
+
+
 
 
 using namespace std;

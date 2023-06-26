@@ -19,21 +19,11 @@ void menu()
     (loged or nao logado)
     a minha recomedaçao e que os menus sejam separados em versoes, com  e sem login, possivelmente mover este bloco todo para main
     */
-    Utilizador loggedUser = Login();
-    if (loggedUser.nome != "")
-    {
-        loginstatus = 1;
-        //chamar menu versao com login
-    }
-    else
-    {
-        loginstatus = 0;
-        //chamar meun versao "no login"
-    }
+    
     
 
-    cout << "\nLogin status[0- 1]:" << endl;
-    cin >> loginstatus;
+    //cout << "\nLogin status[0- 1]:" << endl;
+    //cin >> loginstatus;
     //cin.ignore();
 
 
@@ -85,8 +75,9 @@ void menu()
     cin >> escolha;
     switch (escolha){
     case 1:
-        system("CLS");
+        //system("CLS");
         //Login();
+        Utilizador loggedUser = Login();
         break;
     case 2:
         system("CLS");
@@ -113,7 +104,12 @@ void menu()
         return;
     }*/
 }
+
+
+
 }
+
+
 
 
 #endif // MENUPRIME_H

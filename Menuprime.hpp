@@ -32,8 +32,8 @@ void menu()
     }
     
 
-    //cout << "\nLogin status[0- 1]:" << endl;
-    //cin >> loginstatus;
+    cout << "\nLogin status[0- 1]:" << endl;
+    cin >> loginstatus;
     //cin.ignore();
 
 
@@ -97,8 +97,8 @@ void menu()
         //Iniciar jogo
         break;
     case 4:
-        system("CLS");
-        //vexit();
+        //system("CLS");
+        vexit();
         break;
     case 5:
         system("CLS");

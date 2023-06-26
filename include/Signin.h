@@ -7,8 +7,8 @@
 #include <sstream>
 #include <vector>
 #include <cstdio>
-#include "include\Estruturas.h" 
-#include "include/func_leitura.h"
+#include "Estruturas.h"//caminho RELATIVO a este ficheiro
+#include "func_leitura.h"
 
 //declaraçoes
 Utilizador Registo(Utilizador);

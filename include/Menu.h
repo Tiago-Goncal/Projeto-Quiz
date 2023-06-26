@@ -2,10 +2,10 @@
 #define MENU_H
 
 #include <iostream>
-#include "include\Estruturas.h"
-#include "include/Signin.h"
-#include "include/Quiz.h"
-#include "include/Extras.h"
+#include "Estruturas.h"
+#include "Signin.h"
+#include "Quiz.h"
+#include "Extras.h"
 
 //declaraçao
 void menu();

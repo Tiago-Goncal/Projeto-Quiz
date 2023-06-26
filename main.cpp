@@ -8,6 +8,7 @@
 #include "Extras.hpp"
 #include "Menuprime.hpp"
 #include "tema.hpp"
+#include "Quiz.hpp"
 
 
 using namespace std;

@@ -40,17 +40,30 @@ void menu()
     cin >> escolha;
     switch (escolha){
     case 1:
-        //system("CLS");
-        //Login();
+        system("CLS");
         Utilizador loggedUser = Login();
         break;
     case 2:
         system("CLS");
-        //Registo(userMestre);
+        Registo(userMestre);
         break;
     case 3:
         system("CLS");
         //Iniciar jogo
+        if (loginstatus == 0)
+        {
+            quizSemUser();
+        }
+        else if (loginstatus == 1)
+        {
+            /* code */
+        }
+        else
+        {
+
+        }
+        
+        
         break;
     case 4:
         //system("CLS");

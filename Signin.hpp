@@ -312,7 +312,7 @@ Utilizador Login()
       else
       {
         //utlizador nao encontrado, retornar uma estrutura vazia.
-        cout << "\nUtilizador  não encontrado. "<< endl;
+        cout << "\nUtilizador não encontrado. "<< endl;
         cout << "Prima qualquer tecla para continuar" << endl;
         cin.ignore();
         return Utilizador();

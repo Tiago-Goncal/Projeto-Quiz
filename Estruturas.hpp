@@ -7,6 +7,8 @@
 
 #include <string>
 
+using namespace std;
+
   struct Utilizador
   {
     std::string nome = "";
@@ -21,6 +23,7 @@
 
   struct Pergunta
   {
+    int id;
     int idTema; //1:Cultura Geral|2:Historia|3:Desporto|4:Cinema
     string question;
     string escolhas[4];

@@ -32,8 +32,8 @@ void menu()
     }
     
 
-    cout << "\nLogin status[0- 1]:" << endl;
-    cin >> loginstatus;
+    //cout << "\nLogin status[0- 1]:" << endl;
+    //cin >> loginstatus;
     //cin.ignore();
 
 

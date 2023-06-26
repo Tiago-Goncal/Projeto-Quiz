@@ -28,6 +28,7 @@ using namespace std;
 Utilizador Registo(Utilizador);
 Utilizador Login();
 void lerUtilizador(string& linha, Utilizador& userMestre);
+void lerFicheiroUtilizador(string filename,vector<Utilizador>& lista);
 void guardarDadosUtilizador(const Utilizador&);
 void eliminarUtilizador(const string& nomeFicheiro, const int& idApagar);
 

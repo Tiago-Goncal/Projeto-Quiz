@@ -58,7 +58,7 @@ void quizSemUser()
 Utilizador quizComUser(Utilizador& loggedUser)
 {
     int pick;
-    cout << "\nBem-Vindo" << loggedUser.nome <<" !" endl;
+    cout << "\nBem-Vindo" << loggedUser.nome << " !" << endl;
     cout << "\nSelecione um tema[1-4](ou selecione 5 para sair): " << endl;
     cout << "\n[1] Cultura Geral.";
     cout << "\n[2] Historia.";

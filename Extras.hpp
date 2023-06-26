@@ -1,5 +1,6 @@
 /*
 Menus de entrada saida e erro
+funcoes menores
 */
 
 #ifndef EXTRAS_H
@@ -7,6 +8,8 @@ Menus de entrada saida e erro
 
 
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -14,6 +17,7 @@ using namespace std;
 void boasVindas();
 void error();
 void vexit();
+void drawLoadingBar(); //barra de loading com timer de 10 segundos
 
 void boasVindas()
 {
@@ -55,6 +59,19 @@ void error()
     cin.ignore();
 
 
+}
+
+void drawLoadingBar()
+{
+    const int barWidth = 70;
+    std::cout << "Tempo: [";
+    for (int i = 0; i <= barWidth; ++i)
+    {
+        std::cout << ".";
+        std::cout.flush();
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+    std::cout << "]\n";
 }
 
 

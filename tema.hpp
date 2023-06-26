@@ -1,3 +1,5 @@
+//este ficheiro nao faz nada de momento e nao e incluido
+
 #ifndef TEMA_H
 #define TEMA_H
 

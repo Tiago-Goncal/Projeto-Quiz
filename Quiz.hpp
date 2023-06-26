@@ -2,12 +2,18 @@
 #define QUIZ_H
 
 #include <iostream>
+#include <chrono>
+#include <algorithm>
+#include <cctype>
 
 
 //declaraçoes
 void quizSemUser();
 Utilizador quizComUser(Utilizador& loggedUser);
+Utilizador quizCGeral(Utilizador& Usuario);
 
+vector<Pergunta> questList;// vetor com a lista de perguntas por tema
+unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count(); //numero aleatoria para a funçao shuffle
 
 //1:Cultura Geral|2:Historia|3:Desporto|4:Cinema
 void quizSemUser()
@@ -74,6 +80,7 @@ Utilizador quizComUser(Utilizador& loggedUser)
         cout << "Cultura Geral: " << endl;
         cout << "\nPrima qualquer tecla para continuar...";
         cin.ignore();
+        quizCGeral(loggedUser);
         break;
     case 2:
         cout << "Historia: " << endl;
@@ -103,6 +110,76 @@ Utilizador quizComUser(Utilizador& loggedUser)
 
     return loggedUser;
 }
+
+Utilizador quizCGeral(Utilizador& Usuario)
+{
+    lerCSV("Perguntas.csv", questList);//ler ficheiro com perguntas
+    Pergunta temp;
+    vector<Pergunta> culturaGeral;
+    string answer;
+    int pontos, rightquest;
+    
+    for (int i = 0;  i < questList.size(); i++) //seleccionar perguntas
+    {
+        temp = questList[i];
+        if (temp.idTema == 1) // verificar se a pergunta e valida para o pedido
+        {
+            culturaGeral.push_back(temp); // guardar o vetor "cultura geral" para ser usado
+        } 
+    }
+
+    cout << "\nO quiz de Cultura Geral começa brevemente..." << endl;
+    shuffle(culturaGeral.begin(), culturaGeral.end(), seed);//
+    cout << "\nPrima qualquer tecla para continuar.";
+    cin.clear();
+    cin.ignore();
+
+    for (int i = 0; i < 10; i++)//escrever a pergunta
+    {
+      cout << "\nPergunta #" << i+1 << " : "<< endl;
+      cout << culturaGeral.at(i).question << endl;
+      cout << culturaGeral.at(i).escolhas[0] << endl;
+      cout << culturaGeral.at(i).escolhas[1] << endl;
+      cout << culturaGeral.at(i).escolhas[2] << endl;
+      cout << culturaGeral.at(i).escolhas[3] << endl;
+      getline(cin, answer, ' ');
+      //insert timer here.
+      if (std::equal(answer.begin(), answer.end(), culturaGeral.at(i).correta.begin(),
+      [](char ch1, char ch2) {
+      return std::tolower(ch1) == std::tolower(ch2);//isto e uma funçao lambda serve para que a respotas nao queira saber de maisuculas
+    }))
+        {
+           cout << "\nResposta Correta!";
+           cout << " ";
+           pontos = pontos+5;
+           rightquest = rightquest+1;
+        }
+        else
+        {
+          cout << "\nResposta Errada!" << endl;
+          cout << "a Resposta era:  " <<  culturaGeral.at(i).correta << endl;
+          system("CLS");
+        }
+        
+    }
+
+    cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << "perguntas corretas. ";
+    //atualizaçao de dados
+    Usuario.pontuacao = Usuario.pontuacao + pontos;
+    if (Usuario.highScore<pontos)
+    {
+      Usuario.highScore = pontos;
+    }
+    Usuario.nJogos = loggedUser.nJogos+1;
+    Usuario.totalperguntas = Usuario.totalperguntas+rightquest;   
+    guardarDadosUtilizador(Usuario); //guardar a nova entrada no ficheiro
+    
+    return Usuario;
+}
+
+
+
+
 
 
 #endif //QUIZ_H

@@ -9,7 +9,8 @@
 
 //declaraçao
 void menu();
-Utilizador loggedUser;
+Utilizador loggedUser;//utilizador com login valido
+Utilizador emptyUser;//usado para a versao sem login
 
 //definiçao
 void menu()

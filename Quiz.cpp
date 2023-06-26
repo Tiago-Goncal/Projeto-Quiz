@@ -33,6 +33,7 @@ void quizSemUser()
     case 1:
         cout << "Cultura Geral: " << endl;
         cout << "\nPrima qualquer tecla para continuar...";
+        quizCGeral(emptyUser);
         cin.ignore();
         break;
     case 2:

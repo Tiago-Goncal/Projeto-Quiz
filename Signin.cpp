@@ -198,7 +198,7 @@ void eliminarUtilizador(const string& nomeficheiro, const int& idApagar)
   }
   ficheiro.close();
 
-  //Criaçao de um ficheiro temporario para mainpulaçao segura
+  //Criaçao de um ficheiro temporario para manipulaçao segura
   ofstream tempfile("Tempfile.txt"); 
   if (!tempfile) //o ficheiro falhou a abrir
   {
@@ -316,6 +316,8 @@ Utilizador Login()
 
 }
 
+
+//As funçoes abaixo sao para lse a lista que contem as perguntas.
 void lerCSV(const string& nomeFicheiro ,vector<Pergunta>perguntas)
 {
   ifstream instream;

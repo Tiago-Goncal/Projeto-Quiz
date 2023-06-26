@@ -1,12 +1,10 @@
 
-#include "Quiz.h"
-#include <iostream>
-#include <chrono>
-#include <algorithm>
-#include <cctype>
-#include <vector>
+
+#include "Estruturas.h"
+#include "func_leitura.h"
 #include "Quiz.h"
 #include "Menu.h"
+
 
 
 //declaraçoes

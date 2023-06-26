@@ -13,7 +13,7 @@
 //declaraçoes
 Utilizador Registo(Utilizador);
 Utilizador Login();
-void eliminarUtilizador(const string& nomeFicheiro, const int& idApagar);
+void eliminarUtilizador(const std::string& nomeFicheiro, const int& idApagar);
 
 
 #endif //SIGNIN_H

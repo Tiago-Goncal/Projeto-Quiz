@@ -209,11 +209,8 @@ Utilizador Login()
     }
   }
   cout << endl;
-  
-
+  return Utilizador(); 
 }
 
-
-//As funçoes abaixo sao para lse a lista que contem as perguntas.
 
 

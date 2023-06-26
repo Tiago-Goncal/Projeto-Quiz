@@ -2,7 +2,7 @@
 
 extern Utilizador loggedUser;
 
-void menu()
+void menuPrincipal()
 {
     system("CLS");
     int escolha = 0;
@@ -62,7 +62,7 @@ void menu()
             
             default:
             
-                //error();
+                error();
                 //BRR! Erro
                 break;
             

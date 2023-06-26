@@ -8,8 +8,8 @@
 //ficheiros secundarios
 #include "include/Estruturas.h"
 #include "include/func_leitura.h"
-#include "include/Signin.h"
 #include "include/Menu.h"
+#include "include/Signin.h"
 #include "include/Extras.h"
 #include "include/Quiz.h"
 
@@ -21,7 +21,7 @@ int main()
 {
     setlocale(LC_ALL, " ");
     boasVindas();
-    menu();
+    menuPrincipal();
 
     return 0;
 }

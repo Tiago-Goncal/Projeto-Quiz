@@ -1,5 +1,6 @@
 
 #include "include/Quiz.h"
+#include "include/Menu.h"
 
 
 //declaraçoes
@@ -46,7 +47,7 @@ void quizSemUser()
         cin.ignore();
         break;
     case 5:
-        menu();
+        menuPrincipal();
         cin.clear();
         cin.ignore();
         break;
@@ -92,7 +93,7 @@ Utilizador quizComUser(Utilizador& loggedUser)
         cin.ignore();
         break;
     case 5:
-        menu();
+        menuPrincipal();
         cin.clear();
         cin.ignore();
         break;

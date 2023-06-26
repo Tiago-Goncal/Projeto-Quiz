@@ -24,9 +24,17 @@ id,3,pergunta,escolha1,escolha2,escolha3,escolha4,resposta_correta
 23,3,Em que país foi inventado o voleibol?,Brasil,Italia,França,Estados Unidos,Estados Unidos
 24,3,"Qual destes jogadores de futebol, não tem uma bola de ouro?",Luis Figo,Neymar,Kaká,Ruud Gullit,Neymar
 25,3,Em que ano é que o Boxe se tornou um desporto legal? ,1901,1930,1910,1932,1901
-26,3,Qual é a equipa que ganhou mais Champions League na história? ,Real Madrid,Barcelona,Bayern Munich,,
+26,3,Qual é a equipa que ganhou mais Champions League na história? ,Real Madrid,Barcelona,Bayern Munich,Juventus,Real Madrid
 27,3,Qual atleta atingiu o recorde de velocidade nos 100 metros rasos?,Erling Haalang,Emil Medvedev,Usain Bolt,Patricia Mamona,Usain Bolt
-28,3,,,,,,
-29,3,,,,,,
-30,3,,,,,,
-,,,,,,,
+28,3,Quanto tempo dura uma partida de handebol? ,90 minutos,70 minutos,60 minutos,30 minutos,60 minutos
+29,3,Quem foi o primeiro jogador de basquete espanhol a jogar uma partida da NBA?,Henrique Iglesias,Ferran Torres,Fernando Martin,Emmilio Butragueño,Fernando Martin
+30,3,A cada quantos anos são realizados os Jogos Olímpicos?,2 anos,8 anos,6 anos,4 anos,4 anos
+31,4, Qual filme de terror foi a estreia de Johnny Depp?,A Nightmare on Elm Street,IT,Chucky,The Ring,A Nightmare on Elm Street
+32,4,Qual é a famosa citação de O Sexto Sentido?,"Here's Jhonny","I see dead people","Do you want a ballon?","I see dead people","I see dead people"
+33,4,Que cidade é invadida por fantasmas em “Ghostbusters”?,Red River,Dallas,San Francisco,New York,New York
+34,4,Quem cantou “My Heart Will Go On” no Titanic?,Celin Dion,Whitney Houston,Mariah Carey,Amy Whinehouse, Celin Dion
+35,4,Quem planeou o assalto em La Casa de Papel?,Professor,Tokyo,Berlin,Denver,Professor
+36,4,Como se chama a cadeia de fast food que serve de fachada para o negócio de Heisenberg, em Breaking Bad?,Los Pollos Hermanos,Mc Donald's,Burger King,Los Passaros Primos
+
+
+

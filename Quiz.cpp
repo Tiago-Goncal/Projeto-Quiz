@@ -1,16 +1,15 @@
-#ifndef QUIZ_H
-#define QUIZ_H
 
+#include "Quiz.h"
 #include <iostream>
 #include <chrono>
 #include <algorithm>
 #include <cctype>
+#include <vector>
+#include "Quiz.h"
+#include "Menu.h"
 
 
 //declaraçoes
-void quizSemUser();
-Utilizador quizComUser(Utilizador& loggedUser);
-Utilizador quizCGeral(Utilizador& Usuario);
 
 vector<Pergunta> questList;// vetor com a lista de perguntas por tema
 unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count(); //numero aleatoria para a funçao shuffle
@@ -178,8 +177,3 @@ Utilizador quizCGeral(Utilizador& Usuario)
 }
 
 
-
-
-
-
-#endif //QUIZ_H

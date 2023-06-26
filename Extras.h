@@ -16,7 +16,7 @@ using namespace std;
 
 void boasVindas();
 void error();
-void vexit();
+void vExit();
 void drawLoadingBar(); //barra de loading com timer de 10 segundos
 
 void boasVindas()
@@ -33,7 +33,7 @@ void boasVindas()
 
 }
 
-void vexit()
+void vExit()
 {
 
     //system("CLS");

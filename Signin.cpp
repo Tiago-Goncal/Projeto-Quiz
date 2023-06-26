@@ -12,8 +12,6 @@ Este Ficheiro serve para:
 
 */
 
-#ifndef SIGNIN_HPP
-#define SIGNIN_HPP
 
 #include <iostream>
 #include <string>
@@ -21,18 +19,12 @@ Este Ficheiro serve para:
 #include <sstream>
 #include <vector>
 #include <cstdio>
+#include "Signin.h"
 
 using namespace std;
 
 //declaraçoes
-Utilizador Registo(Utilizador);
-Utilizador Login();
-void lerUtilizador(string& linha, Utilizador& userMestre);
-void lerFicheiroUtilizador(string filename,vector<Utilizador>& lista);
-void guardarDadosUtilizador(const Utilizador&);
-void eliminarUtilizador(const string& nomeFicheiro, const int& idApagar);
-void lerPergunta(string& linha, Pergunta& quiz);
-void lerCSV(const string& nomeFicheiro,vector<Pergunta>perguntas);
+
 
 //variaveis
 
@@ -384,4 +376,3 @@ void lerPergunta(string& linha, Pergunta& quiz)
   }
 }
 
-#endif //SIGNIN

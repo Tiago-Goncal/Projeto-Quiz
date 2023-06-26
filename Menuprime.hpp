@@ -14,14 +14,7 @@ void menu()
     int escolha = 0;
     int loginstatus = 1;
     Utilizador userMestre;
-    /*
-    esta variavel serve para capturar o valor da funçao login e deve ser usado para escolher qual o menu a usar
-    (loged or nao logado)
-    a minha recomedaçao e que os menus sejam separados em versoes, com  e sem login, possivelmente mover este bloco todo para main
-    */
-    
-    
-
+  
     //cout << "\nLogin status[0- 1]:" << endl;
     //cin >> loginstatus;
     //cin.ignore();
@@ -40,14 +33,19 @@ void menu()
     cin >> escolha;
     switch (escolha){
     case 1:
+      {
         system("CLS");
         Utilizador loggedUser = Login();
         break;
+      }
     case 2:
+      {
         system("CLS");
         Registo(userMestre);
         break;
+      }
     case 3:
+      {
         system("CLS");
         //Iniciar jogo
         if (loginstatus == 0)
@@ -56,31 +54,30 @@ void menu()
         }
         else if (loginstatus == 1)
         {
-            /* code */
+            quizComUser(loggedUser);
         }
-        else
-        {
-
-        }
-        
-        
         break;
+      }
     case 4:
+      {
         //system("CLS");
         vexit();
         break;
+      }
     case 5:
+      {
         system("CLS");
         //Tabela de lideres
         break;
+      }
     default:
+      { 
         //error();
         //BRR! Erro
         break;
+      }
     }
 }
-
-
 
 }
 

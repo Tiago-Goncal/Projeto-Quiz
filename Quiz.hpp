@@ -12,16 +12,16 @@ Utilizador quizComUser(Utilizador& loggedUser);
 void quizSemUser()
 {
     //ler ficheiro com as perguntas
-    int escolha;
+    int pick;
     cout << "\nBem-Vindo" << endl;
     cout << "\nSelecione um tema[1-4](ou selecione 5 para sair): " << endl;
     cout << "\n[1] Cultura Geral.";
     cout << "\n[2] Historia.";
     cout << "\n[3] Desporto.";
     cout << "\n[4] Cinema.";
-    cout << ">>>>"
+    cout << ">>>>";
 
-    switch (escolha)
+    switch (pick)
     {
     case 1:
         cout << "Cultura Geral: " << endl;

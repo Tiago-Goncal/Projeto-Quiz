@@ -3,11 +3,12 @@
 
 extern Utilizador loggedUser;
 
-void menuPrincipal()
+//definiçao
+void menuPrincipal() //isto esta a ser visto como declaraçao em vez de definiçao
 {
     system("CLS");
     int escolha = 0;
-    int loginstatus;
+    int loginstatus = 0;
     Utilizador userMestre;
 
     while (escolha != 4)
@@ -27,6 +28,17 @@ void menuPrincipal()
             
                 system("CLS");
                 loggedUser = Login();
+                if (loggedUser==Utilizador())//esta comparaçao utiliza uma versao do operador == definida no header
+                {
+                    loginstatus = 0;
+                    menuPrincipal();
+                }
+                else
+                {
+                    loginstatus = 1;
+                    menuPrincipal();
+                }
+                
                 break;
             
             case 2:

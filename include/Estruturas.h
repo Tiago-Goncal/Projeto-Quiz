@@ -5,14 +5,27 @@
 
 struct Utilizador
   {
-    std::string nome = "";
-    std::string email = "";
-    std::string password = "";
+    std::string nome = " ";
+    std::string email = " ";
+    std::string password = " ";
     int pontuacao = 0;
     int highScore = 0;
     int nJogos = 0;
     int totalperguntas= 0;
     int id = 0;
+
+    //overload do operador ==, necessario para poder compara instancias da estrutura diretamente
+    bool operator==(const Utilizador& other) const
+    {
+      return (nome == other.nome &&
+              email == other.email &&
+              password == other.password &&
+              pontuacao == other.pontuacao &&
+              highScore == other.highScore &&
+              nJogos == other.nJogos &&
+              totalperguntas == other.totalperguntas &&
+              id == other.id);
+    }
   };
 
   struct Pergunta

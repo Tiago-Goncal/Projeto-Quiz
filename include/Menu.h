@@ -8,7 +8,7 @@
 #include "Extras.h"
 
 //declaraçao
-void menuPrincipal();
+int menuPrincipal();
 
 
 #endif // MENU_H

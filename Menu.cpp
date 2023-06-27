@@ -1,15 +1,16 @@
 #include "include/Menu.h"
 
 
-extern Utilizador loggedUser;
+extern Utilizador loggedUser;//declarada em quiz, guarda o utilizador logado
+extern Utilizador dadosUtilizador;//declarada em signin recebe os dados para um novo registo
 
 //definiçao
-void menuPrincipal() //isto esta a ser visto como declaraçao em vez de definiçao
+int menuPrincipal() //isto esta a ser visto como declaraçao em vez de definiçao
 {
     system("CLS");
     int escolha = 0;
     int loginstatus = 0;
-    Utilizador userMestre;
+    
 
     while (escolha != 4)
     {
@@ -44,7 +45,7 @@ void menuPrincipal() //isto esta a ser visto como declaraçao em vez de definiç
             case 2:
             
                 system("CLS");
-                Registo(userMestre);
+                Registo(dadosUtilizador);
                 break;
             
             case 3:
@@ -81,4 +82,5 @@ void menuPrincipal() //isto esta a ser visto como declaraçao em vez de definiç
             
         }
     }
+    return 0;
 }

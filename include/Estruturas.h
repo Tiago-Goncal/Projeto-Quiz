@@ -14,7 +14,7 @@ struct Utilizador
     int totalperguntas= 0;
     int id = 0;
 
-    //overload do operador ==, necessario para poder compara instancias da estrutura diretamente
+    //overload do operador ==, necessario para poder comparar instancias da estrutura diretamente
     bool operator==(const Utilizador& other) const
     {
       return (nome == other.nome &&

@@ -17,11 +17,10 @@ using namespace std;
 void boasVindas();
 void error();
 void vExit();
-void drawLoadingBar(); //barra de loading com timer de 10 segundos
+//void drawLoadingBar(); //barra de loading com timer de 10 segundos
 
 void boasVindas()
 {
-
     cout << "|=========================|" << endl;
     cout << "|====SEJA BEM-VINDO AO====|" << endl;
     cout << "|========QUIZ GAME========!" << endl;
@@ -29,8 +28,6 @@ void boasVindas()
     
     cout << "Prima qualquer tecla para continuar" << endl;
     cin.ignore();
-
-
 }
 
 void vExit()

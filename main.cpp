@@ -6,6 +6,8 @@
 #include <algorithm>
 
 //ficheiros secundarios
+
+
 #include "include/Estruturas.h"
 #include "include/func_leitura.h"
 #include "include/Menu.h"

@@ -1,5 +1,6 @@
 #include "include/Menu.h"
 
+
 extern Utilizador loggedUser;
 
 void menuPrincipal()

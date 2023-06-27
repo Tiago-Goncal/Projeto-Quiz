@@ -29,7 +29,7 @@ int menuPrincipal() //isto esta a ser visto como declaraçao em vez de definiça
             
                 system("CLS");
                 loggedUser = Login();
-                if (loggedUser==Utilizador())//esta comparaçao utiliza uma versao do operador == definida no header
+                if (loggedUser==Utilizador())//esta comparaçao utiliza uma versao do operador == definida no header Estruturas.h
                 {
                     loginstatus = 0;
                     menuPrincipal();

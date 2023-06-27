@@ -60,7 +60,7 @@ void error()
 
 
 }
-
+/*
 void drawLoadingBar()
 {
     const int barWidth = 70;
@@ -73,7 +73,7 @@ void drawLoadingBar()
     }
     std::cout << "]\n";
 }
-
+*/
 
 
 #endif// BOAS VINDAS_H

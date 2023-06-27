@@ -11,7 +11,7 @@
 #include <chrono>
 #include <thread>
 
-using namespace std;
+
 
 
 void boasVindas();
@@ -21,25 +21,25 @@ void vExit();
 
 void boasVindas()
 {
-    cout << "|=========================|" << endl;
-    cout << "|====SEJA BEM-VINDO AO====|" << endl;
-    cout << "|========QUIZ GAME========!" << endl;
-    cout << "|=========================|" << endl;
+    std::cout << "|=========================|" << std::endl;
+    std::cout << "|====SEJA BEM-VINDO AO====|" << std::endl;
+    std::cout << "|========QUIZ GAME========!" << std::endl;
+    std::cout << "|=========================|" << std::endl;
     
-    cout << "Prima qualquer tecla para continuar" << endl;
-    cin.ignore();
+    std::cout << "Prima qualquer tecla para continuar" << std::endl;
+    std::cin.ignore();
 }
 
 void vExit()
 {
 
     //system("CLS");
-    cout << "==================================================" << endl;
-    cout << "=                Até á próxima!!                 =" << endl;
-    cout << "==================================================" << endl<< endl;
+    std::cout << "==================================================" << std::endl;
+    std::cout << "=                Até á próxima!!                 =" << std::endl;
+    std::cout << "==================================================" << std::endl<< std::endl;
     
-    cout << "Prima qualquer tecla para continuar" << endl;
-    cin.ignore();
+    std::cout << "Prima qualquer tecla para continuar" << std::endl;
+    std::cin.ignore();
 
 
 }
@@ -48,12 +48,12 @@ void error()
 {
 
     //system("CLS");
-    cout << "==================================================" << endl;
-    cout << "=                     ERRO.                      =" << endl;
-    cout << "==================================================" << endl<< endl;
+    std::cout << "==================================================" << std::endl;
+    std::cout << "=                     ERRO.                      =" << std::endl;
+    std::cout << "==================================================" << std::endl<< std::endl;
     
-    cout << "Prima qualquer tecla para continuar" << endl;
-    cin.ignore();
+    std::cout << "Prima qualquer tecla para continuar" << std::endl;
+    std::cin.ignore();
 
 
 }

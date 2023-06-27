@@ -2,6 +2,7 @@
 #include "include/Quiz.h"
 #include "include/Menu.h"
 
+using namespace std;
 
 //declaraçoes
 vector<Pergunta> questList;// vetor com a lista de perguntas por tema

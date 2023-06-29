@@ -40,11 +40,10 @@ struct Utilizador
               highScore == other.highScore &&
               nJogos == other.nJogos &&
               totalperguntas == other.totalperguntas &&
-              id == other.id);
+              id == other.id);   
       }
 
   };
-
   struct Pergunta
   {
     int id;
@@ -55,7 +54,7 @@ struct Utilizador
 
   };
 /*Declaraçoes de Variaveis e funçoes*/
-
+bool CompareNomeEmailPassword(const Utilizador& lhs, const Utilizador& rhs);
 
 //------------------------------------------------------------------------------
 //declara�oes de Extras.h
@@ -397,6 +396,7 @@ void menuPrincipal()
         {
             case 1:
                 system("CLS");
+                lerFicheiroUtilizador("Dados_utilizadores.txt", lista);
                 loggedUser = Login(lista);
                 break;
             case 2:
@@ -575,7 +575,7 @@ Utilizador quizCGeral(Utilizador& loggedUser)
     vector<Pergunta> culturaGeral;
     string answer;
     int pontos= 0, rightquest = 0;
-    bool timeout = false; //para tomar nota do tempo limite
+    //bool timeout = false; //para tomar nota do tempo limite
 
     lerCSV("Perguntas.csv", questList);//ler ficheiro com perguntas
   
@@ -605,34 +605,22 @@ Utilizador quizCGeral(Utilizador& loggedUser)
       cout << culturaGeral.at(i).escolhas[3] << endl;
       cout << "\n>>>";
 
-      // flag " Tempo esgotado" tem de ser reiniciada em cada loop.
-      timeout = false;
-
-      //implementaçao Lambda para cirar um temporizador
-      auto timerFunc = [&timeout]() {
-      std::this_thread::sleep_for(std::chrono::milliseconds(100));
-      //cout <<"\ntic..."; // thread com o tempo limite: 10 segundos
-      timeout = true;
-      };
-        //iniciar o temporizador e esperar entrada do utilizador.
-        timeout = false;
-        std::thread timerThread(timerFunc);
+      // Start the timer
+      auto startTime = chrono::steady_clock::now();
 
       //drawLoadingBar();//tempo começa a contar
       getline(cin, answer, ' ');
       cin.clear();
       cin.ignore();
 
-      //juntar a execuçao a esta funçao para que o programa espere que esta termine
-      timerThread.join();
-
-      //tempo esgotou: passar a proxima pergunta.
-      if (timeout==true) 
-        {
-          cout << "\nTempo esgotado! Resposta não submetida." << endl;
-          continue;
-        }
-
+      //temporizador
+      auto endTime = chrono::steady_clock::now();
+      auto elapsed = chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
+      // tempo esgotou: passar a proxima pergunta.
+      if (elapsed >= 10) {
+        cout << "\nTempo esgotado! Resposta não submetida." << endl;
+        continue;
+      }
 
       if (std::equal(answer.begin(), answer.end(), culturaGeral.at(i).correta.begin(),
       [](char ch1, char ch2) {
@@ -849,9 +837,10 @@ Utilizador Login(vector<Utilizador>& lista)
   {
 
     int encontrado = 0;
-    for (const Utilizador& temp : lista)
+    for (size_t i = 0; i < lista.size(); i++)
     {
-      if (temp.nome == dadoslogin.nome && temp.email == dadoslogin.email && temp.password == dadoslogin.password)
+      const Utilizador& temp = lista[i];
+      if (CompareNomeEmailPassword(temp,dadoslogin))
       {
         encontrado = 1;
         cout << "\nUtilizador encontrado." << endl;
@@ -876,6 +865,13 @@ Utilizador Login(vector<Utilizador>& lista)
   return emptyUser;
 }
  
+//comparaçoa dos campos string da estrutura, isto existe proque o operador nao pode recber outro overload
+bool CompareNomeEmailPassword(const Utilizador& lhs, const Utilizador& rhs)
+{
+    return (lhs.nome.compare(rhs.nome) == 0 &&
+            lhs.email.compare(rhs.email) == 0 &&
+            lhs.password.compare(rhs.password) == 0);
+}
 
 
 

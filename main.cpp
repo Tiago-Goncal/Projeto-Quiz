@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <cctype>
 #include <algorithm>
+#include <atomic>
 
 using namespace std;
 
@@ -62,6 +63,7 @@ void boasVindas();
 void error();
 void vExit();
 void drawLoadingBar(); //barra de loading com timer de 10 segundos
+void displayTimer(std::atomic<bool>& timeout); //timer
 
 //Declara�oes de func_leitura.h
 void lerUtilizador(const string& linha, Utilizador& dadosUtilizador);
@@ -170,6 +172,41 @@ void drawLoadingBar()//barra com temporizador(10)segundos
     std::cout << "]\n";
 }
 
+// Funcao timer, 
+void displayTimer(std::atomic<bool>& timeout)
+{
+    const int duration = 10; 
+
+    for (int i = 0; i < duration; i++) {
+        if (timeout)
+            return; //sair se a flag mudar
+
+        cout << "\rTempo restante: " << duration - i << " segundos" << flush;
+        this_thread::sleep_for(chrono::seconds(1));
+    }
+
+    timeout = true; // virar flag
+    cout << endl;
+}
+
+//converter para minusculas
+string toLowerCase(const string& str) {
+    string result = str;
+    for (char& c : result) {
+        c = tolower(c);
+    }
+    return result;
+}
+
+//lambda para comparar de forma case insensitive, serve para ints e strings
+auto equals = [](const string& str1, const string& str2) {
+    if (isdigit(str1[0]) && isdigit(str2[0])) {
+        return str1 == str2; // comparaçao literal
+    } else {
+        return toLowerCase(str1) == toLowerCase(str2); // comparaçao case insensitive
+    }
+};
+
 
 //=================================funcLEITURA==================================
 
@@ -179,7 +216,8 @@ void lerUtilizador(const std::string& linha, Utilizador& dadosUtilizador)
   std::stringstream ss(linha);
   std::string field, temp;
 
-  while (std::getline(ss, field, ':'))
+  while (std::getline(ss, field, ':'))// ler apenas apartir do ':' para evitar colocar lixo no vetor,
+                                      // isto tambem elimina espaços em branco antes do string
   {
     if (!field.empty())
     {
@@ -463,7 +501,7 @@ void menuPrincipal()
 //menu de tema no evento de o utlizador nao estar registado
 void quizSemUser()
 {
-    //TODO:ler ficheiro com as perguntas
+    //TODO:ler ficheiro com as perguntas SOLVED.
     int pick;
     system("CLS");
     cout << "\nBem-Vindo" << endl;
@@ -595,11 +633,10 @@ Utilizador quizCGeral(Utilizador& loggedUser)
     vector<Pergunta> culturaGeral;
     string answer;
     int pontos= 0, rightquest = 0;
-    //bool timeout = false; //para tomar nota do tempo limite
+    atomic<bool> timeout(false); //variavel com a flag the timeout
 
     lerCSV("Perguntas.csv", questList);//ler ficheiro com perguntas
   
-
     for (int i = 0;  i < questList.size(); i++) //seleccionar perguntas
     {
         temp = questList[i];
@@ -625,27 +662,31 @@ Utilizador quizCGeral(Utilizador& loggedUser)
       cout << culturaGeral.at(i).escolhas[3] << endl;
       cout << "\n>>>";
 
-      // Start the timer
-      auto startTime = chrono::steady_clock::now();
+      //reset da flag
+      timeout = false;
+      //inicio do temporizador
+      std::thread timerThread(displayTimer, std::ref(timeout));
 
-      //drawLoadingBar();//tempo começa a contar
-      getline(cin, answer, ' ');
-      cin.clear();
-      cin.ignore();
+      getline(cin, answer); // é necessario ler a linha toda aqui
+    
+      // Check if the user has provided input or if the timeout has occurred
+      while (!timeout && answer.empty()) {
+        // Wait for user input or timeout
+        }
 
-      //temporizador
-      auto endTime = chrono::steady_clock::now();
-      auto elapsed = chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
-      // tempo esgotou: passar a proxima pergunta.
-      if (elapsed >= 10) {
-        cout << "\nTempo esgotado! Resposta não submetida." << endl;
-        continue;
-      }
+        // If the timeout occurred, display the timeout message and continue to the next question
+        if (timeout) {
+            cout << "\nTempo esgotado! Resposta não submetida." << endl;
+            continue; // Skip to next question
+        }
 
-      if (std::equal(answer.begin(), answer.end(), culturaGeral.at(i).correta.begin(),
-      [](char ch1, char ch2) {
-      return std::tolower(ch1) == std::tolower(ch2);//isto e uma funçao lambda serve para que a respotas nao queira saber de maisuculas
-      }))
+        // Set the timeout flag to true
+      timeout = true;
+
+      timerThread.join(); // esperar ate a funçao resolver depois encerrar thread.
+
+      //validaçao da resposta
+      if (equals(answer, culturaGeral.at(i).correta))
         {
            cout << "\nResposta Correta!";
            cout << " ";

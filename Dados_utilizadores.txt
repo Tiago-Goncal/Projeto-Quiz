@@ -87,3 +87,12 @@ PontuacaoMaxima: 9
 NumerodeJogos: 17
 TotalPontos: 340
 ID: 10
+Nome: 
+Email: 
+Password: 
+UltimaPontuaçao: 15
+PontuaçaoMaxima: 15
+NumerodeJogos: 1
+TotalPontos: 3
+ID: 0
+

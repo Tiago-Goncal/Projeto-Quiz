@@ -173,22 +173,42 @@ void drawLoadingBar()//barra com temporizador(10)segundos
 
 //=================================funcLEITURA==================================
 
-void lerUtilizador(const string& linha, Utilizador& dadosUtilizador)
+//ler utilizadores individuais
+void lerUtilizador(const std::string& linha, Utilizador& dadosUtilizador)
 {
-  stringstream ss(linha);
-  string temp;
+  std::stringstream ss(linha);
+  std::string field, temp;
 
-  // le os campos da estrutura na forma esperada pela definiçao
-  getline(ss, dadosUtilizador.nome);
-  getline(ss, dadosUtilizador.email);
-  getline(ss, dadosUtilizador.password);
-  ss >> dadosUtilizador.pontuacao;
-  ss >> dadosUtilizador.highScore;
-  ss >> dadosUtilizador.nJogos;
-  ss >> dadosUtilizador.totalperguntas;
-  ss >> dadosUtilizador.id;
+  while (std::getline(ss, field, ':'))
+  {
+    if (!field.empty())
+    {
+      std::getline(ss, temp);
+
+      // Remove leading whitespaces from the value
+      temp.erase(0, temp.find_first_not_of(" \t"));
+
+      // Assign the value to the corresponding member of the struct
+      if (field == "Nome")
+        dadosUtilizador.nome = temp;
+      else if (field == "Email")
+        dadosUtilizador.email = temp;
+      else if (field == "Password")
+        dadosUtilizador.password = temp;
+      else if (field == "UltimaPontuacao")
+        dadosUtilizador.pontuacao = std::stoi(temp);
+      else if (field == "PontuacaoMaxima")
+        dadosUtilizador.highScore = std::stoi(temp);
+      else if (field == "NumerodeJogos")
+        dadosUtilizador.nJogos = std::stoi(temp);
+      else if (field == "TotalPontos")
+        dadosUtilizador.totalperguntas = std::stoi(temp);
+      else if (field == "ID")
+        dadosUtilizador.id = std::stoi(temp);
+    }
+  }
 }
-
+//ler i ficheiro txt
 void lerFicheiroUtilizador(const string& filename, vector<Utilizador>& lista)
 {
   ifstream instream(filename);

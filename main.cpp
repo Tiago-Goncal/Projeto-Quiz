@@ -648,8 +648,10 @@ Utilizador quizCGeral(Utilizador& loggedUser)
     for (int i = 0; i < culturaGeral.size(); i++)//escrever a pergunta
     {
       //reset da flag do timer
+      cout << flush;
       timeout = false;
-      
+      system("CLS");
+
       cout << "\nPergunta #" << i+1 << " : "<< endl;
       cout << culturaGeral.at(i).question << endl;
       cout << culturaGeral.at(i).escolhas[0] << endl;
@@ -675,6 +677,7 @@ Utilizador quizCGeral(Utilizador& loggedUser)
 
         string answer;
         getline(cin, answer);
+        cin.clear();
         if (answer.empty()) 
         {
             timerFuture.wait_for(chrono::seconds(0));
@@ -683,7 +686,7 @@ Utilizador quizCGeral(Utilizador& loggedUser)
                 cout << "\nTempo esgotado! Resposta não submetida." << endl;
                 cout << "Pressione qualquer tecla para avançar para a próxima pergunta...";
                 cin.ignore();
-                cin.get();
+                cin.clear();
                 continue;
             }
             else
@@ -696,7 +699,7 @@ Utilizador quizCGeral(Utilizador& loggedUser)
                 cout << "\nTempo esgotado! Resposta não submetida." << endl;
                 cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
                 cin.ignore();
-                cin.get();
+                cin.clear();
                 continue;
             }
 
@@ -709,12 +712,12 @@ Utilizador quizCGeral(Utilizador& loggedUser)
             else {
                 cout << "\nResposta Errada!" << endl;
                 cout << "a Resposta era:  " << culturaGeral.at(i).correta << endl;
-                system("CLS");
+                //system("CLS");
             }
         
     }
 
-    cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << "perguntas corretas. ";
+    cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << " perguntas corretas. ";
     //atualizaçao de dados
     loggedUser.pontuacao = loggedUser.pontuacao + pontos;
     if (loggedUser.highScore<pontos)

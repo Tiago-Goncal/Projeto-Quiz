@@ -84,9 +84,9 @@ void menuPrincipal();
 void quizSemUser();
 Utilizador quizComUser(Utilizador& loggedUser);
 Utilizador quizCGeral(Utilizador& Usuario);
-//Utilizador quizHistoria(Utilizador& Usuario);
-//Utilizador quizDesporto(Utilizador& Usuario);
-//Utilizador quizCinema(Utilizador& Usuario);
+Utilizador quizHistoria(Utilizador& Usuario);
+Utilizador quizDesporto(Utilizador& Usuario);
+Utilizador quizCinema(Utilizador& Usuario);
 
 vector<Pergunta> questList;// vetor com a lista de perguntas por tema
 unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count(); //numero aleatoria para a funçao shuffle
@@ -527,18 +527,19 @@ void quizSemUser()
         cout << "Historia: " << endl;
         cout << "\nPrima qualquer tecla para continuar...";
         cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer
+        quizHistoria(emptyUser);
         break;
       case 3:
         cout << "Desporto: " << endl;
         cout << "\nPrima qualquer tecla para continuar...";
         cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer
-        getchar();
+        quizDesporto(emptyUser);
         break;
       case 4:
         cout << "Cinema: " << endl;
         cout << "\nPrima qualquer tecla para continuar...";
         cin.ignore();
-        getchar();
+        quizCinema(emptyUser);
         break;
       case 5:
         menuPrincipal();
@@ -591,16 +592,19 @@ Utilizador quizComUser(Utilizador& loggedUser)
         cout << "Historia: " << endl;
         cout << "\nPrima qualquer tecla para continuar...";
         cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer
+        quizHistoria(loggedUser);
         break;
       case 3:
         cout << "Desporto: " << endl;
         cout << "\nPrima qualquer tecla para continuar...";
         cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer
+        quizDesporto(loggedUser);
         break;
       case 4:
         cout << "Cinema: " << endl;
         cout << "\nPrima qualquer tecla para continuar...";
         cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer
+        quizCinema(loggedUser);
         break;
       case 5:
         menuPrincipal();
@@ -633,7 +637,8 @@ Utilizador quizCGeral(Utilizador& loggedUser)
     vector<Pergunta> culturaGeral;
     string answer;
     int pontos= 0, rightquest = 0;
-    atomic<bool> timeout(false); //variavel com a flag the timeout
+    atomic<bool> timeout(false); //variavel com a flag the timeout, 
+                                //Atomic e usado aqui para que a variavel seja visivel entre threads
 
     lerCSV("Perguntas.csv", questList);//ler ficheiro com perguntas
   
@@ -677,6 +682,8 @@ Utilizador quizCGeral(Utilizador& loggedUser)
         // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
         if (timeout) {
             cout << "\nTempo esgotado! Resposta não submetida." << endl;
+            cout << "\nProxima pergunta(carrge em qualquer tecla...)";
+            cin.ignore();
             continue; // Proxima pergunta
         }
 
@@ -697,6 +704,287 @@ Utilizador quizCGeral(Utilizador& loggedUser)
         {
           cout << "\nResposta Errada!" << endl;
           cout << "a Resposta era:  " <<  culturaGeral.at(i).correta << endl;
+          system("CLS");
+        }
+
+    }
+
+    cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << "perguntas corretas. ";
+    //atualizaçao de dados
+    loggedUser.pontuacao = loggedUser.pontuacao + pontos;
+    if (loggedUser.highScore<pontos)
+    {
+      loggedUser.highScore = pontos;
+    }
+    loggedUser.nJogos = loggedUser.nJogos+1;
+    loggedUser.totalperguntas = loggedUser.totalperguntas+rightquest;
+    guardarDadosUtilizador(loggedUser, "Dados_Utilizadores.txt"); //guardar a nova entrada no ficheiro
+
+    return loggedUser;
+}
+
+//===============================HISTORIA=======================================
+
+Utilizador quizHistoria(Utilizador& loggedUser)
+{
+    vector<Pergunta>questList;
+    Pergunta temp;
+    vector<Pergunta> historia;
+    string answer;
+    int pontos= 0, rightquest = 0;
+    atomic<bool> timeout(false); //variavel com a flag the timeout, 
+                                //Atomic e usado aqui para que a variavel seja visivel entre threads
+
+    lerCSV("Perguntas.csv", questList);//ler ficheiro com perguntas
+  
+    for (int i = 0;  i < questList.size(); i++) //seleccionar perguntas
+    {
+        temp = questList[i];
+        if (temp.idTema == 2) // verificar se a pergunta e valida para o pedido
+        {
+            historia.push_back(temp); // guardar o vetor "cultura geral" para ser usado
+        }
+    }
+
+    cout << "\nO quiz de Cultura Geral começa brevemente..." << endl;
+    //shuffle(culturaGeral.begin(), culturaGeral.end(), seed);//
+    cout << "\nPrima qualquer tecla para continuar.";
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer;
+
+    for (int i = 0; i < historia.size(); i++)//escrever a pergunta
+    {
+      cout << "\nPergunta #" << i+1 << " : "<< endl;
+      cout << historia.at(i).question << endl;
+      cout << historia.at(i).escolhas[0] << endl;
+      cout << historia.at(i).escolhas[1] << endl;
+      cout << historia.at(i).escolhas[2] << endl;
+      cout << historia.at(i).escolhas[3] << endl;
+      cout << "\n>>>";
+
+      //reset da flag
+      timeout = false;
+      //inicio do temporizador
+      std::thread timerThread(displayTimer, std::ref(timeout));
+
+      getline(cin, answer); // é necessario ler a linha toda aqui
+    
+      // verfica se o tempo acabou e a respostas esta vazia
+      while (!timeout && answer.empty()) {
+        // Wait for user input or timeout
+        }
+
+        // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
+        if (timeout) {
+            cout << "\nTempo esgotado! Resposta não submetida." << endl;
+            cout << "\nProxima pergunta(carrge em qualquer tecla...)";
+            cin.ignore();
+            continue; // Proxima pergunta
+        }
+
+        // flag para true
+      timeout = true;
+
+      timerThread.join(); // esperar ate a funçao resolver depois encerrar thread.
+
+      //validaçao da resposta
+      if (equals(answer, historia.at(i).correta))
+        {
+           cout << "\nResposta Correta!";
+           cout << " ";
+           pontos = pontos+5;
+           rightquest = rightquest+1;
+        }
+        else
+        {
+          cout << "\nResposta Errada!" << endl;
+          cout << "a Resposta era:  " <<  historia.at(i).correta << endl;
+          system("CLS");
+        }
+
+    }
+
+    cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << "perguntas corretas. ";
+    //atualizaçao de dados
+    loggedUser.pontuacao = loggedUser.pontuacao + pontos;
+    if (loggedUser.highScore<pontos)
+    {
+      loggedUser.highScore = pontos;
+    }
+    loggedUser.nJogos = loggedUser.nJogos+1;
+    loggedUser.totalperguntas = loggedUser.totalperguntas+rightquest;
+    guardarDadosUtilizador(loggedUser, "Dados_Utilizadores.txt"); //guardar a nova entrada no ficheiro
+
+    return loggedUser;
+}
+//==================================DESPORTO====================================
+Utilizador quizDesporto(Utilizador& loggedUser)
+{
+    vector<Pergunta>questList;
+    Pergunta temp;
+    vector<Pergunta> desporto;
+    string answer;
+    int pontos= 0, rightquest = 0;
+    atomic<bool> timeout(false); //variavel com a flag the timeout, 
+                                //Atomic e usado aqui para que a variavel seja visivel entre threads
+
+    lerCSV("Perguntas.csv", questList);//ler ficheiro com perguntas
+  
+    for (int i = 0;  i < questList.size(); i++) //seleccionar perguntas
+    {
+        temp = questList[i];
+        if (temp.idTema == 3) // verificar se a pergunta e valida para o pedido
+        {
+            desporto.push_back(temp); // guardar o vetor "cultura geral" para ser usado
+        }
+    }
+
+    cout << "\nO quiz de Cultura Geral começa brevemente..." << endl;
+    //shuffle(culturaGeral.begin(), culturaGeral.end(), seed);//
+    cout << "\nPrima qualquer tecla para continuar.";
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer;
+
+    for (int i = 0; i < desporto.size(); i++)//escrever a pergunta
+    {
+      cout << "\nPergunta #" << i+1 << " : "<< endl;
+      cout << desporto.at(i).question << endl;
+      cout << desporto.at(i).escolhas[0] << endl;
+      cout << desporto.at(i).escolhas[1] << endl;
+      cout << desporto.at(i).escolhas[2] << endl;
+      cout << desporto.at(i).escolhas[3] << endl;
+      cout << "\n>>>";
+
+      //reset da flag
+      timeout = false;
+      //inicio do temporizador
+      std::thread timerThread(displayTimer, std::ref(timeout));
+
+      getline(cin, answer); // é necessario ler a linha toda aqui
+    
+      // verfica se o tempo acabou e a respostas esta vazia
+      while (!timeout && answer.empty()) {
+        // Wait for user input or timeout
+        }
+
+        // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
+        if (timeout) {
+            cout << "\nTempo esgotado! Resposta não submetida." << endl;
+            cout << "\nProxima pergunta(carrge em qualquer tecla...)";
+            cin.ignore();
+            continue; // Proxima pergunta
+        }
+
+        // flag para true
+      timeout = true;
+
+      timerThread.join(); // esperar ate a funçao resolver depois encerrar thread.
+
+      //validaçao da resposta
+      if (equals(answer, desporto.at(i).correta))
+        {
+           cout << "\nResposta Correta!";
+           cout << " ";
+           pontos = pontos+5;
+           rightquest = rightquest+1;
+        }
+        else
+        {
+          cout << "\nResposta Errada!" << endl;
+          cout << "a Resposta era:  " <<  desporto.at(i).correta << endl;
+          system("CLS");
+        }
+
+    }
+
+    cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << "perguntas corretas. ";
+    //atualizaçao de dados
+    loggedUser.pontuacao = loggedUser.pontuacao + pontos;
+    if (loggedUser.highScore<pontos)
+    {
+      loggedUser.highScore = pontos;
+    }
+    loggedUser.nJogos = loggedUser.nJogos+1;
+    loggedUser.totalperguntas = loggedUser.totalperguntas+rightquest;
+    guardarDadosUtilizador(loggedUser, "Dados_Utilizadores.txt"); //guardar a nova entrada no ficheiro
+
+    return loggedUser;
+}
+//===================================CINEMA=====================================
+Utilizador quizCinema(Utilizador& loggedUser)
+{
+    vector<Pergunta>questList;
+    Pergunta temp;
+    vector<Pergunta> cinema;
+    string answer;
+    int pontos= 0, rightquest = 0;
+    atomic<bool> timeout(false); //variavel com a flag the timeout, 
+                                //Atomic e usado aqui para que a variavel seja visivel entre threads
+
+    lerCSV("Perguntas.csv", questList);//ler ficheiro com perguntas
+  
+    for (int i = 0;  i < questList.size(); i++) //seleccionar perguntas
+    {
+        temp = questList[i];
+        if (temp.idTema == 4) // verificar se a pergunta e valida para o pedido
+        {
+            cinema.push_back(temp); // guardar o vetor "cultura geral" para ser usado
+        }
+    }
+
+    cout << "\nO quiz de Cultura Geral começa brevemente..." << endl;
+    //shuffle(culturaGeral.begin(), culturaGeral.end(), seed);//
+    cout << "\nPrima qualquer tecla para continuar.";
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer;
+
+    for (int i = 0; i < cinema.size(); i++)//escrever a pergunta
+    {
+      cout << "\nPergunta #" << i+1 << " : "<< endl;
+      cout << cinema.at(i).question << endl;
+      cout << cinema.at(i).escolhas[0] << endl;
+      cout << cinema.at(i).escolhas[1] << endl;
+      cout << cinema.at(i).escolhas[2] << endl;
+      cout << cinema.at(i).escolhas[3] << endl;
+      cout << "\n>>>";
+
+      //reset da flag
+      timeout = false;
+      //inicio do temporizador
+      std::thread timerThread(displayTimer, std::ref(timeout));
+
+      getline(cin, answer); // é necessario ler a linha toda aqui
+    
+      // verfica se o tempo acabou e a respostas esta vazia
+      while (!timeout && answer.empty()) {
+        // Wait for user input or timeout
+        }
+
+        // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
+        if (timeout) {
+            cout << "\nTempo esgotado! Resposta não submetida." << endl;
+            cout << "\nProxima pergunta(carrge em qualquer tecla...)";
+            cin.ignore();
+            continue; // Proxima pergunta
+        }
+
+        // flag para true
+      timeout = true;
+
+      timerThread.join(); // esperar ate a funçao resolver depois encerrar thread.
+
+      //validaçao da resposta
+      if (equals(answer, cinema.at(i).correta))
+        {
+           cout << "\nResposta Correta!";
+           cout << " ";
+           pontos = pontos+5;
+           rightquest = rightquest+1;
+        }
+        else
+        {
+          cout << "\nResposta Errada!" << endl;
+          cout << "a Resposta era:  " <<  cinema.at(i).correta << endl;
           system("CLS");
         }
 
@@ -926,7 +1214,7 @@ Utilizador Login(vector<Utilizador>& lista)
   return emptyUser;
 }
  
-//comparaçoa dos campos string da estrutura, isto existe proque o operador nao pode recber outro overload
+//comparaçao dos campos string da estrutura, isto existe proque o operador == nao pode receber outro overload
 bool CompareNomeEmailPassword(const Utilizador& lhs, const Utilizador& rhs)
 {
     return (lhs.nome.compare(rhs.nome) == 0 &&

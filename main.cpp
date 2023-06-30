@@ -117,10 +117,12 @@ int main()
 //==================================EXTRAS======================================
 void boasVindas()
 {
-    cout << "|=========================|" << endl;
-    cout << "|====SEJA BEM-VINDO AO====|" << endl;
-    cout << "|========QUIZ GAME========!" << endl;
-    cout << "|=========================|" << endl;
+    cout << "==================================================" << endl;
+    cout << "=              SEJA BEM-VINDO AO                 =" << endl;
+    cout << "=                  QUIZ GAME                     =" << endl;
+    cout << "==================================================" << endl;
+    cout << "======================@2023=======================" << endl;
+    cout << "==================================================" << endl;
 
     cout << "Prima qualquer tecla para continuar" << endl;
     cin.ignore();
@@ -195,10 +197,7 @@ auto equals = [](const string& str1, const string& str2) {
         return toLowerCase(str1) == toLowerCase(str2); // comparaçao case insensitive
     }
 };
-
-
 //=================================funcLEITURA==================================
-
 //ler utilizadores individuais
 void lerUtilizador(const std::string& linha, Utilizador& dadosUtilizador)
 {
@@ -269,11 +268,12 @@ void lerFicheiroUtilizador(const string& filename, vector<Utilizador>& lista)
     }
 
     instream.close();
-    cout << "\n" << countUtilizadores("Dados_utilizadores.txt")+1 << " Utilizadores registados. " << endl;
+    //debug
+    //cout << "\n" << countUtilizadores("Dados_utilizadores.txt")+1 << " Utilizadores registados. " << endl;
   }
   else
   {
-    cout << "\nFicheiro falhou a abrir";
+    //cout << "\nFicheiro falhou a abrir";
     return;
   }
 }

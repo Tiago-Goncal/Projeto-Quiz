@@ -682,11 +682,11 @@ Utilizador quizCGeral(Utilizador& loggedUser)
         // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
         if (timeout) {
             cout << "\nTempo esgotado! Resposta não submetida." << endl;
-            cout << "\nProxima pergunta(carrge em qualquer tecla...)";
+            cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
             cin.ignore();
+            cin.get(); 
             continue; // Proxima pergunta
         }
-
         // flag para true
       timeout = true;
 
@@ -711,6 +711,8 @@ Utilizador quizCGeral(Utilizador& loggedUser)
 
     cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << "perguntas corretas. ";
     //atualizaçao de dados
+
+    
     loggedUser.pontuacao = loggedUser.pontuacao + pontos;
     if (loggedUser.highScore<pontos)
     {
@@ -746,7 +748,7 @@ Utilizador quizHistoria(Utilizador& loggedUser)
         }
     }
 
-    cout << "\nO quiz de Cultura Geral começa brevemente..." << endl;
+    cout << "\nO quiz de Historia começa brevemente..." << endl;
     //shuffle(culturaGeral.begin(), culturaGeral.end(), seed);//
     cout << "\nPrima qualquer tecla para continuar.";
     cin.clear();
@@ -777,8 +779,9 @@ Utilizador quizHistoria(Utilizador& loggedUser)
         // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
         if (timeout) {
             cout << "\nTempo esgotado! Resposta não submetida." << endl;
-            cout << "\nProxima pergunta(carrge em qualquer tecla...)";
+            cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
             cin.ignore();
+            cin.get(); 
             continue; // Proxima pergunta
         }
 
@@ -839,7 +842,7 @@ Utilizador quizDesporto(Utilizador& loggedUser)
         }
     }
 
-    cout << "\nO quiz de Cultura Geral começa brevemente..." << endl;
+    cout << "\nO quiz de Desporto começa brevemente..." << endl;
     //shuffle(culturaGeral.begin(), culturaGeral.end(), seed);//
     cout << "\nPrima qualquer tecla para continuar.";
     cin.clear();
@@ -870,8 +873,9 @@ Utilizador quizDesporto(Utilizador& loggedUser)
         // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
         if (timeout) {
             cout << "\nTempo esgotado! Resposta não submetida." << endl;
-            cout << "\nProxima pergunta(carrge em qualquer tecla...)";
+            cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
             cin.ignore();
+            cin.get(); 
             continue; // Proxima pergunta
         }
 
@@ -932,7 +936,7 @@ Utilizador quizCinema(Utilizador& loggedUser)
         }
     }
 
-    cout << "\nO quiz de Cultura Geral começa brevemente..." << endl;
+    cout << "\nO quiz de Cinema começa brevemente..." << endl;
     //shuffle(culturaGeral.begin(), culturaGeral.end(), seed);//
     cout << "\nPrima qualquer tecla para continuar.";
     cin.clear();
@@ -963,8 +967,9 @@ Utilizador quizCinema(Utilizador& loggedUser)
         // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
         if (timeout) {
             cout << "\nTempo esgotado! Resposta não submetida." << endl;
-            cout << "\nProxima pergunta(carrge em qualquer tecla...)";
+            cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
             cin.ignore();
+            cin.get(); 
             continue; // Proxima pergunta
         }
 

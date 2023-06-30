@@ -504,7 +504,7 @@ void quizSemUser()
     //TODO:ler ficheiro com as perguntas SOLVED.
     int pick;
     system("CLS");
-    cout << "\nBem-Vindo" << endl;
+    cout << "\nBem-Vindo " << endl;
     cout << "\nSelecione um tema[1-4](ou selecione 5 para sair): " << endl;
     cout << "\n[1] Cultura Geral.";
     cout << "\n[2] Historia.";
@@ -569,7 +569,7 @@ Utilizador quizComUser(Utilizador& loggedUser)
 {
     int pick;
     system("CLS");
-    cout << "\nBem-Vindo" << loggedUser.nome << " !" << endl;
+    cout << "\nBem-Vindo " << loggedUser.nome << " !" << endl;
     cout << "\nSelecione um tema[1-4](ou selecione 5 para sair): " << endl;
     cout << "\n[1] Cultura Geral.";
     cout << "\n[2] Historia.";

@@ -1,8 +1,7 @@
 #include <iostream>
-#include <locale.h>
+#include <locale>
 #include <string>
-#include <chrono>
-#include <thread>
+#include <chrono> //funçoes relacionada a temporizaçao
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -10,7 +9,11 @@
 #include <cstdlib>
 #include <cctype>
 #include <algorithm>
-#include <atomic>
+#include <thread> //classes para lidar com multiplas linhas de execuçao
+#include <mutex>  //classes para transitar entre linhas de execuçao de forma segura
+#include <atomic> //classes para gerar variaveis capazes the interagir entre linhas de execuçao diferentes
+
+
 
 using namespace std;
 
@@ -103,7 +106,7 @@ Funçao Main
 */
 int main()
 {
-    setlocale(LC_ALL, " ");
+    std::setlocale(LC_ALL, "");
     lerFicheiroUtilizador("Dados_utilizadores.txt", lista); //inicializaçao
     boasVindas();
     drawLoadingBar();
@@ -635,10 +638,11 @@ Utilizador quizCGeral(Utilizador& loggedUser)
     }
 
     cout << "\nO quiz de Cultura Geral começa brevemente..." << endl;
-    //shuffle(culturaGeral.begin(), culturaGeral.end(), seed);//
     cout << "\nPrima qualquer tecla para continuar.";
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer;
+
+    std::mutex mtx;//isto é um mutex, um objecto necessario para facilitar sincronizaçao do objecto thread
 
     for (int i = 0; i < culturaGeral.size(); i++)//escrever a pergunta
     {
@@ -654,42 +658,43 @@ Utilizador quizCGeral(Utilizador& loggedUser)
       timeout = false;
       //inicio do temporizador
       std::thread timerThread(displayTimer, std::ref(timeout));
+      {//Dentro de outra thread
+        std::lock_guard<std::mutex> lock(mtx); // Fechadura: a execuçao esta trancada a esta thread até este bloco acabar
 
-      getline(cin, answer); // é necessario ler a linha toda aqui
-    
-      // verfica se o tempo acabou e a respostas esta vazia
-      while (!timeout && answer.empty()) {
-        // Wait for user input or timeout
-        }
+        getline(cin, answer); // é necessario ler a linha toda aqui
 
+            if (!timeout && answer.empty()) {
+              while (!timeout && answer.empty()){
+                  // Espera
+                }
+              }
         // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
-        if (timeout) {
-            cout << "\nTempo esgotado! Resposta não submetida." << endl;
-            cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
-            cin.ignore();
-            cin.get(); 
-            continue; // Proxima pergunta
-        }
-        // flag para true
-      timeout = true;
+      }//saida da thread
 
       timerThread.join(); // esperar ate a funçao resolver depois encerrar thread.
+        {//outra thread
+            std::lock_guard<std::mutex> lock(mtx); // trancado
 
-      //validaçao da resposta
-      if (equals(answer, culturaGeral.at(i).correta))
-        {
-           cout << "\nResposta Correta!";
-           cout << " ";
-           pontos = pontos+5;
-           rightquest = rightquest+1;
-        }
-        else
-        {
-          cout << "\nResposta Errada!" << endl;
-          cout << "a Resposta era:  " <<  culturaGeral.at(i).correta << endl;
-          system("CLS");
-        }
+            if (timeout) {
+                cout << "\nTempo esgotado! Resposta não submetida." << endl;
+                cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
+                cin.ignore();
+                cin.get();
+                continue;
+            }
 
+            if (equals(answer, culturaGeral.at(i).correta)) {
+                cout << "\nResposta Correta!";
+                cout << " ";
+                pontos = pontos + 5;
+                rightquest = rightquest + 1;
+            }
+            else {
+                cout << "\nResposta Errada!" << endl;
+                cout << "a Resposta era:  " << culturaGeral.at(i).correta << endl;
+                system("CLS");
+            }
+        }//final da thread
     }
 
     cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << "perguntas corretas. ";
@@ -735,6 +740,8 @@ Utilizador quizHistoria(Utilizador& loggedUser)
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer;
 
+    std::mutex mtx;//isto é um mutex, um objecto necessario para facilitar sincronizaçao do objecto thread
+
     for (int i = 0; i < historia.size(); i++)//escrever a pergunta
     {
       cout << "\nPergunta #" << i+1 << " : "<< endl;
@@ -749,43 +756,43 @@ Utilizador quizHistoria(Utilizador& loggedUser)
       timeout = false;
       //inicio do temporizador
       std::thread timerThread(displayTimer, std::ref(timeout));
+      {//Dentro de outra thread
+        std::lock_guard<std::mutex> lock(mtx); // Fechadura: a execuçao esta trancada a esta thread até este bloco acabar
 
-      getline(cin, answer); // é necessario ler a linha toda aqui
-    
-      // verfica se o tempo acabou e a respostas esta vazia
-      while (!timeout && answer.empty()) {
-        // Wait for user input or timeout
-        }
+        getline(cin, answer); // é necessario ler a linha toda aqui
 
+            if (!timeout && answer.empty()) {
+              while (!timeout && answer.empty()){
+                  // Espera
+                }
+              }
         // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
-        if (timeout) {
-            cout << "\nTempo esgotado! Resposta não submetida." << endl;
-            cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
-            cin.ignore();
-            cin.get(); 
-            continue; // Proxima pergunta
-        }
-
-        // flag para true
-      timeout = true;
+      }//saida da thread
 
       timerThread.join(); // esperar ate a funçao resolver depois encerrar thread.
+        {//outra thread
+            std::lock_guard<std::mutex> lock(mtx); // trancado
 
-      //validaçao da resposta
-      if (equals(answer, historia.at(i).correta))
-        {
-           cout << "\nResposta Correta!";
-           cout << " ";
-           pontos = pontos+5;
-           rightquest = rightquest+1;
-        }
-        else
-        {
-          cout << "\nResposta Errada!" << endl;
-          cout << "a Resposta era:  " <<  historia.at(i).correta << endl;
-          system("CLS");
-        }
+            if (timeout) {
+                cout << "\nTempo esgotado! Resposta não submetida." << endl;
+                cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
+                cin.ignore();
+                cin.get();
+                continue;
+            }
 
+            if (equals(answer, historia.at(i).correta)) {
+                cout << "\nResposta Correta!";
+                cout << " ";
+                pontos = pontos + 5;
+                rightquest = rightquest + 1;
+            }
+            else {
+                cout << "\nResposta Errada!" << endl;
+                cout << "a Resposta era:  " << historia.at(i).correta << endl;
+                system("CLS");
+            }
+        }//final da thread
     }
 
     cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << "perguntas corretas. ";
@@ -801,6 +808,7 @@ Utilizador quizHistoria(Utilizador& loggedUser)
 
     return loggedUser;
 }
+
 //==================================DESPORTO====================================
 Utilizador quizDesporto(Utilizador& loggedUser)
 {
@@ -829,6 +837,8 @@ Utilizador quizDesporto(Utilizador& loggedUser)
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer;
 
+    std::mutex mtx;//isto é um mutex, um objecto necessario para facilitar sincronizaçao do objecto thread
+
     for (int i = 0; i < desporto.size(); i++)//escrever a pergunta
     {
       cout << "\nPergunta #" << i+1 << " : "<< endl;
@@ -843,43 +853,43 @@ Utilizador quizDesporto(Utilizador& loggedUser)
       timeout = false;
       //inicio do temporizador
       std::thread timerThread(displayTimer, std::ref(timeout));
+      {//Dentro de outra thread
+        std::lock_guard<std::mutex> lock(mtx); // Fechadura: a execuçao esta trancada a esta thread até este bloco acabar
 
-      getline(cin, answer); // é necessario ler a linha toda aqui
-    
-      // verfica se o tempo acabou e a respostas esta vazia
-      while (!timeout && answer.empty()) {
-        // Wait for user input or timeout
-        }
+        getline(cin, answer); // é necessario ler a linha toda aqui
 
+            if (!timeout && answer.empty()) {
+              while (!timeout && answer.empty()){
+                  // Espera
+                }
+              }
         // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
-        if (timeout) {
-            cout << "\nTempo esgotado! Resposta não submetida." << endl;
-            cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
-            cin.ignore();
-            cin.get(); 
-            continue; // Proxima pergunta
-        }
-
-        // flag para true
-      timeout = true;
+      }//saida da thread
 
       timerThread.join(); // esperar ate a funçao resolver depois encerrar thread.
+        {//outra thread
+            std::lock_guard<std::mutex> lock(mtx); // trancado
 
-      //validaçao da resposta
-      if (equals(answer, desporto.at(i).correta))
-        {
-           cout << "\nResposta Correta!";
-           cout << " ";
-           pontos = pontos+5;
-           rightquest = rightquest+1;
-        }
-        else
-        {
-          cout << "\nResposta Errada!" << endl;
-          cout << "a Resposta era:  " <<  desporto.at(i).correta << endl;
-          system("CLS");
-        }
+            if (timeout) {
+                cout << "\nTempo esgotado! Resposta não submetida." << endl;
+                cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
+                cin.ignore();
+                cin.get();
+                continue;
+            }
 
+            if (equals(answer, desporto.at(i).correta)) {
+                cout << "\nResposta Correta!";
+                cout << " ";
+                pontos = pontos + 5;
+                rightquest = rightquest + 1;
+            }
+            else {
+                cout << "\nResposta Errada!" << endl;
+                cout << "a Resposta era:  " << desporto.at(i).correta << endl;
+                system("CLS");
+            }
+        }//final da thread
     }
 
     cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << "perguntas corretas. ";
@@ -895,6 +905,7 @@ Utilizador quizDesporto(Utilizador& loggedUser)
 
     return loggedUser;
 }
+
 //===================================CINEMA=====================================
 Utilizador quizCinema(Utilizador& loggedUser)
 {
@@ -923,6 +934,8 @@ Utilizador quizCinema(Utilizador& loggedUser)
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer;
 
+    std::mutex mtx;//isto é um mutex, um objecto necessario para facilitar sincronizaçao do objecto thread
+
     for (int i = 0; i < cinema.size(); i++)//escrever a pergunta
     {
       cout << "\nPergunta #" << i+1 << " : "<< endl;
@@ -937,43 +950,43 @@ Utilizador quizCinema(Utilizador& loggedUser)
       timeout = false;
       //inicio do temporizador
       std::thread timerThread(displayTimer, std::ref(timeout));
+      {//Dentro de outra thread
+        std::lock_guard<std::mutex> lock(mtx); // Fechadura: a execuçao esta trancada a esta thread até este bloco acabar
 
-      getline(cin, answer); // é necessario ler a linha toda aqui
-    
-      // verfica se o tempo acabou e a respostas esta vazia
-      while (!timeout && answer.empty()) {
-        // Wait for user input or timeout
-        }
+        getline(cin, answer); // é necessario ler a linha toda aqui
 
+            if (!timeout && answer.empty()) {
+              while (!timeout && answer.empty()){
+                  // Espera
+                }
+              }
         // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
-        if (timeout) {
-            cout << "\nTempo esgotado! Resposta não submetida." << endl;
-            cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
-            cin.ignore();
-            cin.get(); 
-            continue; // Proxima pergunta
-        }
-
-        // flag para true
-      timeout = true;
+      }//saida da thread
 
       timerThread.join(); // esperar ate a funçao resolver depois encerrar thread.
+        {//outra thread
+            std::lock_guard<std::mutex> lock(mtx); // trancado
 
-      //validaçao da resposta
-      if (equals(answer, cinema.at(i).correta))
-        {
-           cout << "\nResposta Correta!";
-           cout << " ";
-           pontos = pontos+5;
-           rightquest = rightquest+1;
-        }
-        else
-        {
-          cout << "\nResposta Errada!" << endl;
-          cout << "a Resposta era:  " <<  cinema.at(i).correta << endl;
-          system("CLS");
-        }
+            if (timeout) {
+                cout << "\nTempo esgotado! Resposta não submetida." << endl;
+                cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
+                cin.ignore();
+                cin.get();
+                continue;
+            }
 
+            if (equals(answer, cinema.at(i).correta)) {
+                cout << "\nResposta Correta!";
+                cout << " ";
+                pontos = pontos + 5;
+                rightquest = rightquest + 1;
+            }
+            else {
+                cout << "\nResposta Errada!" << endl;
+                cout << "a Resposta era:  " << cinema.at(i).correta << endl;
+                system("CLS");
+            }
+        }//final da thread
     }
 
     cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << "perguntas corretas. ";
@@ -989,6 +1002,7 @@ Utilizador quizCinema(Utilizador& loggedUser)
 
     return loggedUser;
 }
+
 
 //===================================signin.cpp=================================
 

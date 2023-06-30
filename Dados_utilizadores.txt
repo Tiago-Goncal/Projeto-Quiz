@@ -97,3 +97,12 @@ NumerodeJogos: 0
 TotalPontos: 0
 ID: 11
 
+Nome: 
+Email: 
+Password: 
+UltimaPontuaçao: 0
+PontuaçaoMaxima: 0
+NumerodeJogos: 1
+TotalPontos: 0
+ID: 0
+

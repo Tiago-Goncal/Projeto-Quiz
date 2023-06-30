@@ -87,12 +87,13 @@ PontuacaoMaxima: 9
 NumerodeJogos: 17
 TotalPontos: 340
 ID: 10
-Nome: 
-Email: 
-Password: 
-UltimaPontuaçao: 15
-PontuaçaoMaxima: 15
-NumerodeJogos: 1
-TotalPontos: 3
-ID: 0
+
+Nome: tex
+Email: tex@mail.com
+Password: teste
+UltimaPontuaçao: 0
+PontuaçaoMaxima: 0
+NumerodeJogos: 0
+TotalPontos: 0
+ID: 11
 

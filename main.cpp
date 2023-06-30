@@ -669,18 +669,18 @@ Utilizador quizCGeral(Utilizador& loggedUser)
 
       getline(cin, answer); // é necessario ler a linha toda aqui
     
-      // Check if the user has provided input or if the timeout has occurred
+      // verfica se o tempo acabou e a respostas esta vazia
       while (!timeout && answer.empty()) {
         // Wait for user input or timeout
         }
 
-        // If the timeout occurred, display the timeout message and continue to the next question
+        // se o tempo expirar, entrar neste caso e avançar para a proxima pergunta
         if (timeout) {
             cout << "\nTempo esgotado! Resposta não submetida." << endl;
-            continue; // Skip to next question
+            continue; // Proxima pergunta
         }
 
-        // Set the timeout flag to true
+        // flag para true
       timeout = true;
 
       timerThread.join(); // esperar ate a funçao resolver depois encerrar thread.

@@ -18,7 +18,6 @@ using std::cout;
 using std::cin;
 using std::vector;
 
-
 //ESTRUTURAS:H------------------------------------------------------------------
 struct Utilizador
   {
@@ -43,7 +42,6 @@ struct Utilizador
               totalperguntas == other.totalperguntas &&
               id == other.id);   
       }
-
   };
   struct Pergunta
   {
@@ -52,7 +50,6 @@ struct Utilizador
     std::string question;
     std::string escolhas[4];
     std::string correta;
-
   };
 /*Declaraçoes de Variaveis e funçoes*/
 bool CompareNomeEmailPassword(const Utilizador& lhs, const Utilizador& rhs);
@@ -75,7 +72,6 @@ void lerPergunta(std::string& linha, Pergunta& quiz);
 
 //Declara�oes lider.h
 void tabelaLider();
-
 
 //Menu.h
 void menuPrincipal();
@@ -103,9 +99,7 @@ Utilizador dadosUtilizador;
 vector<Pergunta> quizquestions;
 
 /*
-
 Funçao Main
-
 */
 int main()
 {
@@ -119,7 +113,6 @@ int main()
 //==================================EXTRAS======================================
 void boasVindas()
 {
-
     cout << "|=========================|" << endl;
     cout << "|====SEJA BEM-VINDO AO====|" << endl;
     cout << "|========QUIZ GAME========!" << endl;
@@ -127,13 +120,10 @@ void boasVindas()
 
     cout << "Prima qualquer tecla para continuar" << endl;
     cin.ignore();
-
-
 }
 
 void vExit()
 {
-
     //system("CLS");
     cout << "==================================================" << endl;
     cout << "=                Até á próxima!!                 =" << endl;
@@ -141,13 +131,10 @@ void vExit()
 
     cout << "Prima qualquer tecla para continuar" << endl;
     cin.ignore();
-
-
 }
 
 void error()
 {
-
     //system("CLS");
     cout << "==================================================" << endl;
     cout << "=                     ERRO.                      =" << endl;
@@ -155,8 +142,6 @@ void error()
 
     cout << "Prima qualquer tecla para continuar" << endl;
     cin.ignore();
-
-
 }
 
 void drawLoadingBar()//barra com temporizador(10)segundos
@@ -336,7 +321,6 @@ void guardarDadosUtilizador(const Utilizador& dadosUtilizador, const std::string
   {
     cout << "Falha a abrir o ficheiro.";
   }
-
 }
 
 void lerCSV(const string& nomeFicheiro, vector<Pergunta>& perguntas)
@@ -626,10 +610,9 @@ Utilizador quizComUser(Utilizador& loggedUser)
       cout << "Escolha inválida. Tente novamente." << endl;
       quizComUser(loggedUser); // entrada invalida, a funçao cham-se a si propria para voltar a atras
     }
-
     return loggedUser;
 }
-
+//==========================CUULTURA_GERAL=============================================================
 Utilizador quizCGeral(Utilizador& loggedUser)
 {
     vector<Pergunta>questList;
@@ -711,8 +694,6 @@ Utilizador quizCGeral(Utilizador& loggedUser)
 
     cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << "perguntas corretas. ";
     //atualizaçao de dados
-
-    
     loggedUser.pontuacao = loggedUser.pontuacao + pontos;
     if (loggedUser.highScore<pontos)
     {

@@ -1,4 +1,4 @@
-id,3,pergunta,escolha1,escolha2,escolha3,escolha4,resposta_correta
+id,idTema,pergunta,escolha1,escolha2,escolha3,escolha4,resposta_correta
 1,1,Quantos estados têm os Estados Unidos integrados?,56,59,53,50,50
 2,1,Em que ano acabou a II Guerra Mundial?,1976,1945,1956,1967,1945
 3,1,Quantos anos durou a Guerra dos 100 anos?,100 anos,80 anos,79 anos,116 anos,116 anos

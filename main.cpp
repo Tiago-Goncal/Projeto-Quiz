@@ -4,11 +4,11 @@
 #include <chrono> //funçoes relacionada a temporizaçao
 #include <fstream>
 #include <sstream>
-#include <vector>
-#include <cstdio>
+#include <vector> 
+#include <cstdio> // I/O do estilo de C
 #include <cstdlib>
-#include <cctype>
-#include <algorithm>
+#include <cctype> //classes para lidar com manipulacao de carateres
+#include <algorithm> 
 #include <thread> //classes para lidar com multiplas linhas de execuçao
 #include <mutex>  //classes para transitar entre linhas de execuçao de forma segura
 #include <atomic> //classes para gerar variaveis capazes the interagir entre linhas de execuçao diferentes
@@ -18,12 +18,14 @@
 
 using namespace std;
 
+//algumas das funçoes requrem que estes nomes sejam chamados explicitamente
 using std::cout;
 using std::cin;
 using std::vector;
 
 //ESTRUTURAS:H------------------------------------------------------------------
-struct Utilizador
+//Esta estrutura representa a forma do objecto "utilizador", esquematizado aqui para que possa ser guardado de forma organizada
+struct Utilizador 
   {
     std::string nome = "";
     std::string email = "";
@@ -35,6 +37,7 @@ struct Utilizador
     int id = 0;
 
     //overload do operador ==, necessario para poder comparar instancias da estrutura diretamente
+    //sem esta funcionalidade os membros teriam de ser comparados indivdualmente
     bool operator==(const Utilizador& other) const
       {
       return (nome == other.nome &&
@@ -47,6 +50,7 @@ struct Utilizador
               id == other.id);   
       }
   };
+  //formato do objecto "pergunta"
   struct Pergunta
   {
     int id;
@@ -55,24 +59,25 @@ struct Utilizador
     std::string escolhas[4];
     std::string correta;
   };
+
 /*Declaraçoes de Variaveis e funçoes*/
-bool CompareNomeEmailPassword(const Utilizador& lhs, const Utilizador& rhs);
+bool CompareNomeEmailPassword(const Utilizador& lhs, const Utilizador& rhs); //comaparaçao dos 3 campos string de Utilizador
 
 //------------------------------------------------------------------------------
 //declara�oes de Extras.h
 void boasVindas();
 void error();
 void vExit();
-void drawLoadingBar(); //barra de loading com timer de 10 segundos
+void drawLoadingBar(); //barra de loading 
 void displayTimer(std::atomic<bool>& timeout); //timer
 
 //Declara�oes de func_leitura.h
-void lerUtilizador(const string& linha, Utilizador& dadosUtilizador);
-void lerFicheiroUtilizador(const string& filename, vector<Utilizador>& lista);
+void lerUtilizador(const string& linha, Utilizador& dadosUtilizador);//ler uma estrutura "utilizador"
+void lerFicheiroUtilizador(const string& filename, vector<Utilizador>& lista); //usando a funçao acima, ler um ficheiro com varias estruturas
 int countUtilizadores(string filename);
 void guardarDadosUtilizador(const Utilizador& dadosUtilizador, const std::string& filename);
-void lerCSV(const string& nomeFicheiro, vector<Pergunta>& perguntas);
-void lerPergunta(std::string& linha, Pergunta& quiz);
+void lerPergunta(std::string& linha, Pergunta& quiz); // ler a estrutura "pergunta"
+void lerCSV(const string& nomeFicheiro, vector<Pergunta>& perguntas); // ler o ficheiro com as perguntas, diferente pq esta a ler uma tabela
 
 //Declara�oes lider.h
 void tabelaLider();
@@ -81,26 +86,27 @@ void tabelaLider();
 void menuPrincipal();
 
 //Quiz.h
-void quizSemUser();
+void quizSemUser(); //assume "emptyUser" 
 Utilizador quizComUser(Utilizador& loggedUser);
+//Temas
 Utilizador quizCGeral(Utilizador& Usuario);
 Utilizador quizHistoria(Utilizador& Usuario);
 Utilizador quizDesporto(Utilizador& Usuario);
 Utilizador quizCinema(Utilizador& Usuario);
-
+//variaveis usada no quiz
 vector<Pergunta> questList;// vetor com a lista de perguntas por tema
-unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count(); //numero aleatoria para a funçao shuffle
 Utilizador loggedUser;//utilizador com login valido
 Utilizador emptyUser;//usado para a versao sem login
 
 //Signin.h
 Utilizador Registo();
 Utilizador Login(vector<Utilizador>& lista);
-void eliminarUtilizador(const std::string& nomeFicheiro, const int& idApagar);
+void eliminarUtilizador(const std::string& nomeFicheiro, const int& idApagar); //implementada mas nao usada
 
-vector<Utilizador> lista;
-Utilizador dadosUtilizador;
-vector<Pergunta> quizquestions;
+
+//outras variaveis
+vector<Utilizador> lista; //lista de utlizadores
+vector<Pergunta> quizquestions; //lista de perguntas recebidas do ficheiro
 
 /*
 Funçao Main
@@ -212,10 +218,10 @@ void lerUtilizador(const std::string& linha, Utilizador& dadosUtilizador)
     {
       std::getline(ss, temp);
 
-      // Remove leading whitespaces from the value
+      // imlars escapos em brancos antes do primeiro carater valido
       temp.erase(0, temp.find_first_not_of(" \t"));
 
-      // Assign the value to the corresponding member of the struct
+      // ligar os valores os campos especificos
       if (field == "Nome")
         dadosUtilizador.nome = temp;
       else if (field == "Email")
@@ -235,7 +241,7 @@ void lerUtilizador(const std::string& linha, Utilizador& dadosUtilizador)
     }
   }
 }
-//ler i ficheiro txt
+//ler o ficheiro txt
 void lerFicheiroUtilizador(const string& filename, vector<Utilizador>& lista)
 {
   ifstream instream(filename);
@@ -244,7 +250,7 @@ void lerFicheiroUtilizador(const string& filename, vector<Utilizador>& lista)
   if (instream) // esta aberto?
   {
     string line; //para ler o ficheiro linha a linha
-    string block; //acumula os dados lidos ate determinar que uma instancia da estrutura foi lida
+    string block; //acumula os dados lidos ate determinar que uma linha em branco seja encontrada
     while (getline(instream, line))
     {
       if (line.empty())  // linha em branco a separar utilizadores
@@ -295,7 +301,7 @@ int countUtilizadores(string filename)
   }
   else
   {
-    cerr << "Ficheiro falhou a abrir." << endl;
+    cout << "Ficheiro falhou a abrir." << endl;
   }
 
   return utilizadorCount;
@@ -327,7 +333,7 @@ void guardarDadosUtilizador(const Utilizador& dadosUtilizador, const std::string
     cout << "Falha a abrir o ficheiro.";
   }
 }
-
+//ler tabela .CSV
 void lerCSV(const string& nomeFicheiro, vector<Pergunta>& perguntas)
 {
   ifstream instream;
@@ -349,13 +355,13 @@ void lerCSV(const string& nomeFicheiro, vector<Pergunta>& perguntas)
     return;
   }
 }
-
+//ler a estrutura "pergunta"
 void lerPergunta(string& linha, Pergunta& quiz)
 {
   istringstream is(linha);
   string temp;
   int cont= 0;
-  while (getline(is ,temp,','))
+  while (getline(is ,temp,',')) //num ficheiro csv o carater delimitador e a virgula
   {
     if (cont == 0)
     {
@@ -600,7 +606,7 @@ Utilizador quizComUser(Utilizador& loggedUser)
         cin.ignore(numeric_limits<streamsize>::max(),'\n');//limpar o buffer
         break;
       default:
-        quizSemUser();
+        quizComUser(loggedUser);
         break;
     }
   }
@@ -633,7 +639,7 @@ Utilizador quizCGeral(Utilizador& loggedUser)
     for (int i = 0;  i < questList.size(); i++) //seleccionar perguntas
     {
         temp = questList[i];
-        if (temp.idTema == 1) // verificar se a pergunta e valida para o pedido
+        if (temp.idTema == 1) // verificar se a pergunta e do tipo certo
         {
             culturaGeral.push_back(temp); // guardar o vetor "cultura geral" para ser usado
         }
@@ -661,7 +667,7 @@ Utilizador quizCGeral(Utilizador& loggedUser)
       cout << culturaGeral.at(i).escolhas[3] << endl;
       cout << "\n>>>";
 
-      //inicio do temporizador
+      //inicio do temporizador, isto e uma tarefa do typo async para o possa correr enquanto espera por input
       
         auto timerFuture = async(launch::async, [&timeout]() {
             const int duration = 10;
@@ -677,7 +683,7 @@ Utilizador quizCGeral(Utilizador& loggedUser)
         });
 
         string answer;
-        getline(cin, answer);
+        getline(cin, answer); //input
         cin.clear();
         if (answer.empty()) 
         {
@@ -695,7 +701,7 @@ Utilizador quizCGeral(Utilizador& loggedUser)
               timerFuture.wait();//esperar
             }
         }
-
+            /*
             if (timeout) {
                 cout << "\nTempo esgotado! Resposta não submetida." << endl;
                 cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
@@ -703,7 +709,7 @@ Utilizador quizCGeral(Utilizador& loggedUser)
                 cin.clear();
                 continue;
             }
-
+            */
             if (equals(answer, culturaGeral.at(i).correta)) {
                 cout << "\nResposta Correta!";
                 cout << " ";
@@ -717,9 +723,9 @@ Utilizador quizCGeral(Utilizador& loggedUser)
             }
         
     }
-
+    //final da ronda
     cout << "\nPontuaçao final: " << pontos << " com "<< rightquest << " perguntas corretas. ";
-    //atualizaçao de dados
+    //atualizaçao de dados, na versao sem utilizador "loggedUser" = ao emptyuser
     loggedUser.pontuacao = loggedUser.pontuacao + pontos;
     if (loggedUser.highScore<pontos)
     {
@@ -811,14 +817,6 @@ Utilizador quizHistoria(Utilizador& loggedUser)
               timerFuture.wait();//esperar
             }
         }
-
-            if (timeout) {
-                cout << "\nTempo esgotado! Resposta não submetida." << endl;
-                cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
-                cin.ignore();
-                cin.clear();
-                continue;
-            }
 
             if (equals(answer, historia.at(i).correta)) {
                 cout << "\nResposta Correta!";
@@ -927,14 +925,6 @@ Utilizador quizDesporto(Utilizador& loggedUser)
             }
         }
 
-            if (timeout) {
-                cout << "\nTempo esgotado! Resposta não submetida." << endl;
-                cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
-                cin.ignore();
-                cin.clear();
-                continue;
-            }
-
             if (equals(answer, desporto.at(i).correta)) {
                 cout << "\nResposta Correta!";
                 cout << " ";
@@ -1041,14 +1031,6 @@ Utilizador quizCinema(Utilizador& loggedUser)
               timerFuture.wait();//esperar
             }
         }
-
-            if (timeout) {
-                cout << "\nTempo esgotado! Resposta não submetida." << endl;
-                cout << "\nPressione qualquer tecla para avançar para a próxima pergunta...";
-                cin.ignore();
-                cin.clear();
-                continue;
-            }
 
             if (equals(answer, cinema.at(i).correta)) {
                 cout << "\nResposta Correta!";

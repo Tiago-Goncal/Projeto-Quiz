@@ -106,12 +106,14 @@ NumerodeJogos: 1
 TotalPontos: 0
 ID: 0
 
-Nome: 
-Email: 
-Password: 
+
+
+Nome: tex
+Email: tex@mail.com
+Password: teste
 UltimaPontuaçao: 10
 PontuaçaoMaxima: 10
 NumerodeJogos: 1
 TotalPontos: 2
-ID: 0
+ID: 11
 

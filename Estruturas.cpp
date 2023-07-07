@@ -1,7 +1,6 @@
 #include <Estruturas.h>
 
 
-
 //comparaçao dos campos string da estrutura, isto existe proque o operador == nao pode receber outro overload
 bool CompareNomeEmailPassword(const Utilizador& lhs, const Utilizador& rhs)
 {
